@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkuluak</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="manifest" href="../pwa/manifest.json" />
+</head>
+<body>
+    <div class="back-container">
+        <form action="../admin">
+            <button type="submit"><img src="../pics/atzera.svg" alt="Atzera"></button>
+        </form>
+        <form action="../podium">
+            <button type="submit"><img src="../pics/birkargatu.svg" alt="Birkargatu"></button>
+        </form>
+    </div>
+    <script type = "module">
+        import { autentifikatu } from '../../js/user.js';
+        import { kalkuluakBistaratu } from '../../js/admin.js';
+        import { loadFooter } from '../../js/app.js';
+        window.addEventListener('DOMContentLoaded', () => {
+            loadFooter(),
+            kalkuluakBistaratu();
+        });
+    </script>
+<div id = "footer"></div>
+</body>
+
+</html>

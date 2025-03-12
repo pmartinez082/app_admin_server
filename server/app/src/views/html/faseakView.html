@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Faseak Monitorizatu</title>
+        <link rel="manifest" href="../pwa/manifest.json" />
+        <link rel = "stylesheet" href = "../css/style.css">
+        <script type="module">
+            import { faseakBistaratu } from '../../js/admin.js';
+            import { loadFooter } from '../../js/app.js';
+            window.addEventListener('DOMContentLoaded', () => {
+                faseakBistaratu(),
+                loadFooter();
+            });
+        </script>
+    </head>
+
+    <body>
+        <div class="back-container">
+            <form action="../admin">
+                <button type="submit"><img src="../pics/atzera.svg" alt="Atzera"></button>
+            </form>
+            <form action="../faseak">
+                <button type="submit"><img src="../pics/birkargatu.svg" alt="Birkargatu"></button>
+            </form>
+        </div>
+
+        <div id="content" >
+            <div class="taulaDiv" >
+                <h1>Martxan dagoen txapelketaren kudeaketa</h1>
+            <table id="faseakTaula" class = "taula" >
+             </table>
+            </div>
+        </div>
+
+        <div id="footer"></div>
+    </body>
+</html>

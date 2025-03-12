@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taldeen kudeaketa</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="manifest" href="../../../pwa/manifest.json" />
+</head>
+<body>
+    <div class="back-container">
+        <form action="../../berria">
+            <button type="submit"><img src="../pics/atzera.svg" alt="Atzera"></button>
+        </form>
+
+       
+        <form action="../berria/taldea">
+            <button type="submit"><img src="../pics/birkargatu.svg" alt="Birkargatu"></button>
+        </form>
+
+        </div>
+<div id = "taulaDiv" class = "form-container"></div>
+<div id = "taldeenTaula" class="inputDiv"></div>
+
+
+<div id = "footer">
+   
+</div>
+</body>
+<script type = "module">
+
+    import {taldeaForm} from "../../js/admin.js";
+    import {loadFooter} from "../../js/app.js";
+    window.addEventListener('DOMContentLoaded', () => {
+        loadFooter(),
+        taldeaForm(2);
+    });
+
+  </script>
+</html>
