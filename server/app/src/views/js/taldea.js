@@ -51,7 +51,7 @@ export const createNewTaldea = async (event) => {
             return false;
         }
     } catch (err) {
-        alert('Errorea');
+        //alert('Errorea');
         //console.log(err);
     }
 };
@@ -68,8 +68,7 @@ export const getTaldea = async () => {
         });
         if (response.ok) {
             const data = await response.json();
-           return new konstanteak.Taldea(data[0].idTaldea, data[0].izena, data[0].email, data[0].telefonoa, data[0].puntuakGuztira, data[0].egoera);    
-
+           return data;
 
         }
         
@@ -79,9 +78,8 @@ export const getTaldea = async () => {
 
 };
 
-export const getBaloratuGabekoTaldeak = async (event) => {
-   
-    const idEpaimahaikidea = event.target.id.split('buttonTaldeak-')[1];
+export const getBaloratuGabekoTaldeak = async (idEpaimahaikidea) => {
+  
     try {
         const response = await fetch(`${API_URL}/taldea/${idEpaimahaikidea}/baloratu-gabekoak`, {
             method: 'GET',
@@ -99,7 +97,7 @@ export const getBaloratuGabekoTaldeak = async (event) => {
             return taldeak;
         }
         else{
-            return [];
+            return false
         }
     } catch (err) {
         //console.log(err);

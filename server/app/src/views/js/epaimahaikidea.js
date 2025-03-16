@@ -2,10 +2,10 @@ import { API_URL } from "./konstanteak.js";
 import * as konstanteak from "./konstanteak.js";
 
 
-function getEpaimahaikideakArray(){
+function getEpaimahaikideakArray(idFasea){
    const epaimahaikideakCheck = document.getElementsByName('checkbox');
    const epaimahaikideak = [];
-   const idFasea = document.getElementById('idFasea').value;
+   
    epaimahaikideakCheck.forEach(e => {
        if (e.checked) {
            epaimahaikideak.push(new konstanteak.Epaimahaikidea(0, e.value, idFasea));
@@ -14,7 +14,7 @@ function getEpaimahaikideakArray(){
    return epaimahaikideak;
 }
 
-export const createNewEpaimahaikidea = async () => {
+export async function createNewEpaimahaikidea (idFasea) {
     var i = 0;
     while (i < getEpaimahaikideakArray().length) {
         if (getEpaimahaikideakArray()[i].idEpaimahaikidea === null) {
@@ -23,7 +23,7 @@ export const createNewEpaimahaikidea = async () => {
         const data = {
            
             username: getEpaimahaikideakArray()[i].username,
-            idFasea: document.getElementById('idFasea').value
+            idFasea: idFasea
         };
         try {
             const response = await fetch(`${API_URL}/epaimahaikidea/add`, {
@@ -44,7 +44,7 @@ export const createNewEpaimahaikidea = async () => {
                 //console.log(`Error: ${error.error}`);
             }
         } catch (err) {
-            alert('Errorea');
+            //alert('Errorea');
             //console.log(err);
         }
         i = i + 1;

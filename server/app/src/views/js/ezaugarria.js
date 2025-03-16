@@ -1,7 +1,7 @@
 import {API_URL} from './konstanteak.js'
 import * as konstanteak from './konstanteak.js';
-export function getEzaugarriakArray(){
-    const idFasea = document.getElementById('idFasea').value;
+export function getEzaugarriakArray(idFasea){
+
     const ezaugarriak = [];
     const ezaugarriaIzena = document.getElementsByName('ezaugarriaIzena');
     const eMin = document.getElementsByName('ezaugarriaMin');
@@ -48,8 +48,7 @@ export const getEzaugarria = async () => {
 
         const data = await response.json();
         //console.log(data);
-        return new konstanteak.Ezaugarria(data[0].idEzaugarria, data[0].izena, data[0].puntuakMax, data[0].puntuakMin, data[0].idFasea, data[0].ponderazioa);
-        
+        return data;
     } catch (err) {
         //console.log("Network or parsing error:", err);
         return null;
@@ -69,8 +68,7 @@ export const getEzaugarria2 = async () => {
         if (response.ok) {
             const data = await response.json();
             //console.log(data);
-           return new konstanteak.Ezaugarria(data[0].idEzaugarria, data[0].izena, data[0].puntuakMax, data[0].puntuakMin, data[0].ponderazioa);
-
+           return data;
 
         }
       
@@ -80,21 +78,21 @@ export const getEzaugarria2 = async () => {
     }
 };
         
-export const createNewEzaugarria = async () => {
+export async function createNewEzaugarria (idFasea) {
     var i = 0;
-    if(!getEzaugarriakArray() ) return false;
-    while (i < getEzaugarriakArray().length) {
-        if (getEzaugarriakArray()[i].idEzaugarria === null) {
+    if(!getEzaugarriakArray(idFasea) ) return false;
+    while (i < getEzaugarriakArray(idFasea).length) {
+        if (getEzaugarriakArray(idFasea)[i].idEzaugarria === null) {
             break;
         }
         
         const data = {
             idEzaugarria: null,
-            izena: getEzaugarriakArray()[i].izena,
-            puntuakMin: getEzaugarriakArray()[i].puntuakMin,
-            puntuakMax: getEzaugarriakArray()[i].puntuakMax,
-            idFasea: document.getElementById('idFasea').value,
-            ponderazioa: getEzaugarriakArray()[i].ponderazioa 
+            izena: getEzaugarriakArray(idFasea)[i].izena,
+            puntuakMin: getEzaugarriakArray(idFasea)[i].puntuakMin,
+            puntuakMax: getEzaugarriakArray(idFasea)[i].puntuakMax,
+            idFasea: idFasea,
+            ponderazioa: getEzaugarriakArray(idFasea)[i].ponderazioa 
         };
         try {
             const response = await fetch(`${API_URL}/ezaugarria/add`, {
@@ -115,7 +113,7 @@ export const createNewEzaugarria = async () => {
                 //console.log(`Error: ${error.error}`);
             }
         } catch (err) {
-            alert('Errorea');
+            //alert('Errorea');
             //console.log(err);
         }
         i = i + 1;

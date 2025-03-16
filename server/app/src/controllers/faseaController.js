@@ -83,7 +83,7 @@ export const faseaExists = async (req, res) => {
   
       const [result] = await dbConnection.execute(sqlQuery, faseaObj);
       const idFasea = result.insertId;
-      res.status(201).json({ idFasea });
+      res.status(201).json({ idFasea: idFasea });
     } catch (error) {
       //console.log(error);
       res.status(500).json({ error: 'Error creating fasea' });

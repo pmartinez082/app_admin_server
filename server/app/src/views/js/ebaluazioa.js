@@ -2,9 +2,8 @@
 import {API_URL} from './konstanteak.js'
 import * as konstanteak from "./konstanteak.js";
 
-export const getEpailearenEbaluazioakFaseka = async (event) => {
-    event.preventDefault();
-    const idEpaimahaikidea = event.target.id.split('buttonEbaluazioak-')[1];   
+export const getEpailearenEbaluazioakFaseka = async (idEpaimahaikidea) => {
+  
     try {
         const response = await fetch(`${API_URL}/ebaluazioa/get/EpailearenEbaluazioakFaseka/${idEpaimahaikidea}`, {
             method: 'GET',
@@ -33,14 +32,13 @@ export const getEpailearenEbaluazioakFaseka = async (event) => {
         }
     }
     catch (err) {
-        alert('Errorea');
+        //alert('Errorea');
         //console.log(err);
     }
 };
 
-export const getFasearenEbaluazioak = async (event) => {
-    event.preventDefault();
-    const idFasea = event.target.id.split('-')[1];
+export const getFasearenEbaluazioak = async (idFasea) => {
+
     try {
         const response = await fetch(`http://192.168.137.1:3000/ebaluazioa/get/fasearenEbaluazioak/${idFasea}`);
         if (response.ok) {
@@ -59,7 +57,7 @@ export const getFasearenEbaluazioak = async (event) => {
         }
     }
     catch (err) {
-        alert('Errorea');
+        //alert('Errorea');
         //console.log(err);
     }
 

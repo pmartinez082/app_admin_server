@@ -31,11 +31,11 @@
             autentifikatu();
         });
     </script>
-    <div id = "txapForm"  class = "form-container">
+    <div id = "txapForm"  class = "form-container" style="margin-top: 50px;">
     <h1>Txapelketa berri bat sortu </h1>
-    
+    <form id = "txapelketaForm" >
         <table id = "txapelketaTaula"   >
-           <tr hidden><td> <input id = "idTxapelketa" hidden> </td></tr> 
+          
             <tr>
                 <td>Izena</td>
                 <td><input type="text" id="txapelketaIzena" placeholder="Izena" required></td>
@@ -43,7 +43,7 @@
 
             <tr>
                 <td>Data</td>
-                <td><input type="datetime-local" id="dataOrdua" placeholder="uuuu-hh-ee" required ></td>
+                <td><input type="datetime-local" id="dataOrdua"  required ></td>
             </tr>
 
             <tr>
@@ -55,15 +55,17 @@
                 <td hidden><input type="hidden" id="idTxapelketa"></input></td>
             </tr>
         </table>
-        <button type="button" id="sortu" >Sortu</button>
- 
+        <button type="submit" id="sortu" >Sortu</button>
+    </form>
         
     
     </div>
 
-    <div id="faseenTaula" class = "taulaDiv" ><table id = "faseakTaula" class = "taula" ></table></div>
+    <div id="faseenTaula" class = "taulaDiv" >
+        <form id="faseakForm">
+        <table id = "faseakTaula" class = "taula" ></table></div>
      
-
+    </form>
 
 
 <div id = "txapelketakDiv" class = "taulaDiv" ></div>

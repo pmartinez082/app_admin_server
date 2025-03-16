@@ -80,11 +80,11 @@ export const createNewTxapelketa = async (req, res) => {
 
 
     const idTxapelketa = result.insertId;
-
-    res.status(201).json({ idTxapelketa });
+    console.log("idTxapelketa: " + idTxapelketa);
+    res.status(201).json({ idTxapelketa: idTxapelketa });
   } catch (error) {
     //console.log(error);
-    res.status(500).json({ error: 'Error creating txapelketa' });
+    res.status(500).json({ error: error.message });
   }
 };
 

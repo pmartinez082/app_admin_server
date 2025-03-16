@@ -157,7 +157,7 @@ export function loadFooter(){
         </form>
         <form id="adminForm1" action="../berria">
         
-            <button class="button-berria" title="Berria gehitu">
+            <button class="button-berria2" title="Berria gehitu">
         <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"

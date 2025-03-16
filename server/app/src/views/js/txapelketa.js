@@ -55,12 +55,12 @@ export const createNewTxapelketa = async (event) => {
 
             const responseData = await response.json();
             const idTxapelketa = responseData.idTxapelketa;
-            document.getElementById('idTxapelketa').value = idTxapelketa;
+            return idTxapelketa;
 
             //console.log("Txapelketa ondo sortu da");
         } else {
             const error = await response.json();
-            alert(`Error: ${error.error}`);
+            //alert(`Error: ${error.error}`);
         }
     } catch (err) {
         //console.log(err);
@@ -101,9 +101,9 @@ export const updateTxapelketa = async (event) => {
 
 
 //TXAPELKETA LORTU
-export const getTxapelketa = async () => {             
+export async function getTxapelketa (idTxapelketa)  {             
     
-    const idTxapelketa = document.getElementById('idTxapelketa').value;
+
     try {
         const response = await fetch(`${API_URL}/txapelketa/${idTxapelketa}`, {
             method: 'GET',
@@ -114,7 +114,7 @@ export const getTxapelketa = async () => {
         });
         if (response.ok) {
             const data = await response.json();
-           return new konstanteak.Txapelketa(data.idTxapelketa, data.lekua, data.izena, data.dataOrdua, data.egoera);
+           return data;
 
         }
         
@@ -125,10 +125,11 @@ export const getTxapelketa = async () => {
 };
 
 //TXAPELKETA EZABATU
-export const deleteTxapelketa = async (event) => {
+export async function deleteTxapelketa (idTxapelketa)  {
 
-event.preventDefault();
-const idTxapelketa = event.target.id.split('-')[1];
+
+
+console.log(idTxapelketa);
   try {
     const response = await fetch(`${API_URL}/txapelketa/delete/`, {
       method: 'DELETE',
@@ -142,18 +143,18 @@ const idTxapelketa = event.target.id.split('-')[1];
       //console.log('txapelketa ezabatu da');
     } else {
       const error = await response.json();
-      alert(`Error: ${error.error}`);
+      //alert(`Error: ${error.error}`);
     }
   } catch (err) {
-    alert('Error en la conexión con el servidor.');
+    //alert('Error en la conexión con el servidor.');
     //console.log(err);
   }
 };
 
 //TXAPELKETAREN FASEAK LORTU
-export const getTxapelketarenFaseak = async () => {
+export async function getTxapelketarenFaseak(idTxapelketa)  {
     
-    const idTxapelketa = document.getElementById('idTxapelketa').value;
+
     try {
         const response = await fetch(`${API_URL}/txapelketa/${idTxapelketa}/faseak`, {
             method: 'GET',
@@ -195,10 +196,10 @@ export const getInfoGuztia = async () => {
     }
 };
 
-export const getTxapelketarenInfoGuztia = async () => {
+export async function getTxapelketarenInfoGuztia  (idTxapelketa)  {
     
     try {
-        const idTxapelketa = document.getElementById('idTxapelketa').value;
+        
         const response = await fetch(`${API_URL}/txapelketa/lortu/info-guztia/${idTxapelketa}`, {
             method: 'GET',
             headers: {
@@ -293,9 +294,8 @@ export const getTxapelketaAktiboarenInfo = async (req, res) => {
     }
 };
 
-export const updateTxapelketaEgoera = async (event) => {
-    const idTxapelketa = event.target.id.split('-')[1];
-    var egoera = event.target.id.split('-')[0];
+export async function updateTxapelketaEgoera(idTxapelketa, egoera) {
+   
     if(egoera == "hasi")
         egoera = 0;
     else

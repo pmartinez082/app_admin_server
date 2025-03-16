@@ -3,13 +3,11 @@ import * as konstanteak from "./konstanteak.js";
 
 
 //FASEA SORTU
-export const createNewFasea = async () => {
+export async function createNewFasea (idTxapelketa)  {
     const data = {
-        idFasea: null,
-        idTxapelketa: document.getElementById('idTxapelketa').value,
+       
+        idTxapelketa: idTxapelketa,
         izena: document.getElementById('faseIzena').value,
-        hasiera: null,
-        amaiera: null,
         egoera: "0",
         irizpidea: document.getElementById('faseIrizpidea').value
     };
@@ -27,50 +25,16 @@ export const createNewFasea = async () => {
             //console.log("fasea ondo sortu da");
             const responseData = await response.json();
             const idFasea = responseData.idFasea;
-            document.getElementById('idFasea').value = idFasea;
-            return true;
+            return idFasea;
         } else {
             const error = await response.json();
             //console.log(`Error: ${error.error}`);
         }
     } catch (err) {
-        alert('Errorea');
+        //alert('Errorea');
         //console.log(err);
     }
 };
-
-export const deleteFasea = async (event) => {
-    const idFasea = document.getElementById('idFasea').value;
-    event.preventDefault();
-
-    try {
-        const response = await fetch(`${API_URL}/fasea/delete/`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(idFasea),
-        });
-
-        if (response.ok) {
-            //console.log('Fasea ezabatu da');
-        } else {
-            const error = await response.json();
-            //console.log(`Error: ${error.error}`);
-        }
-    } catch (err) {
-        //console.log('Error.');
-        //console.log(err);
-    }
-};
-
-
-
-
-
-
-
-
 
 
 export const getFasearenEpaimahaikideakEzaugarriak = async () => {
@@ -194,7 +158,7 @@ export const egoeraAldatu = async (event) => {
             //console.log(`Error: ${error.error}`);
         }
     } catch (err) {
-        alert('Errorea');
+        //alert('Errorea');
         //console.log(err);
     }
 };

@@ -164,7 +164,7 @@ WHERE t.egoera = 0
     const [results] = await dbConnection.query(sqlQuery, idEpaimahaikidea);
     
     if (results.length === 0) {
-      res.status(404).json({ error: 'Taldeak ez daude baloratu gabeko' });
+      res.status(404).json({ message: 'Talde guztiak baloratuta'});
     }
 
     else{
