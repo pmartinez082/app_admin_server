@@ -40,7 +40,7 @@ export async function getEpailearenEbaluazioakFaseka (idEpaimahaikidea) {
 export const getFasearenEbaluazioak = async (idFasea) => {
 
     try {
-        const response = await fetch(`http://192.168.137.1:3000/ebaluazioa/get/fasearenEbaluazioak/${idFasea}`);
+        const response = await fetch(`${API_URL}/ebaluazioa/get/fasearenEbaluazioak/${idFasea}`);
         if (response.ok) {
             const data = await response.json();
             //console.log(data);
