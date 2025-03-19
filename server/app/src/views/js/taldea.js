@@ -56,8 +56,7 @@ export const createNewTaldea = async (event) => {
     }
 };
 
-export const getTaldea = async () => {
-    const id = document.getElementById('faseakTaula').getAttribute('data').split('-')[0];
+export async function getTaldea  (id)  {
     try {
         const response = await fetch(`${API_URL}/taldea/${id}`, {
             method: 'GET',
@@ -68,7 +67,7 @@ export const getTaldea = async () => {
         });
         if (response.ok) {
             const data = await response.json();
-           return data;
+           return data[0];
 
         }
         

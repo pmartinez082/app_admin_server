@@ -132,7 +132,7 @@ td {
 .taula > tbody > tr:first-of-type {
     position: sticky;
     top: 32px; 
-    background-color: #008CBA;
+    background-color: #0000005c; /* light gray */
     border-collapse: collapse;
     border: 1px solid #ddd;
     font-size: 10px;
@@ -146,7 +146,7 @@ td {
 .taulaInput > tbody > tr:first-of-type {
     position: sticky;
     top: -1px; 
-    background-color: #008CBA;
+    background-color: #0000005c; /* light gray */
     border-collapse: collapse;
     border: 1px solid #ddd;
     font-size: 10px;
@@ -165,7 +165,7 @@ td {
 }
 .taulaInput button,
 .taula button {
-    background-color: #008CBA;
+    background-color: #0000005c; /* light gray */
     color: white;
     border: none;
     border-radius: 8px;
@@ -225,7 +225,7 @@ td {
   }
   
   form button {
-    background-color: #008cba;
+    background-color: #0000005c; /* light gray */
     color: white;
     border: none;
     padding: 10px;
@@ -251,7 +251,7 @@ td {
 
   
 button {
-    background-color: #008CBA;
+    background-color: #0000005c; /* light gray */
     color: white;
     border: none;
     border-radius: 8px;
@@ -272,22 +272,21 @@ button:hover {
 button:focus {
     outline: none;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    background-color: none;
 }
 
 button:disabled {
-    background-color: #d3d3d3;
+    background-color: #0000005c;
     color: #a1a1a1;
     cursor: not-allowed;
     box-shadow: none;
 }
 
 button.btn-primary {
-    background-color: #008CBA;
+    background-color: #0000005c; /* light gray */
 }
 
-button.btn-primary:hover {
-    background-color: #007B9E;
-}
+
 /*
 button.btn-secondary {
     background-color: #f300036;
@@ -473,7 +472,7 @@ label {
     font-size: 7.2px;
     font-weight: bold;
     color: white;
-    background-color: #008CBA;
+    background-color: #0000005c; /* light gray */
     position: sticky;
     top: 0;
     text-transform: uppercase;
@@ -483,7 +482,7 @@ label {
     position: sticky;
     margin-top: 7px;
     padding: 6px 8px;
-    background-color: #008CBA;
+    background-color: #0000005c; /* light gray */
     color: white;
     border: none;
     border-radius: 4px;
@@ -616,7 +615,7 @@ table {
     border-radius: 10px;
   }
 
-  .button:hover .tooltip {
+  .tooltip {
     background-color: rgba(255, 255, 255, 0.1);
     visibility: visible;
     opacity: 1;
@@ -624,6 +623,7 @@ table {
   .settings-btn {
     display: block;
     transition: transform 0.4s ease-in;
+    
   }
   .settings-btn:hover {
     transform: rotate(60deg);
@@ -673,7 +673,7 @@ table {
     width: 35px;
     height: 35px;
     stroke: #000;
-    fill: none;
+    
     transition: fill 0.3s, stroke 0.3s;
 }
 
@@ -798,8 +798,9 @@ table {
     border-radius: 20px;
   }
   .button-zakarrontzi {
-    width: 50px;
-    height: 50px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
     background-color: transparent; 
     border: none;
@@ -823,18 +824,13 @@ table {
     fill: black;
 }
 
-.button-zakarrontzi:hover {
-    width: 60px;
-    border-radius: 50px;
-    transition-duration: .3s;
-    background-color: rgb(255, 69, 69); /* Color rojo al hacer hover */
-    align-items: center;
+
+.highlight {
+    background-color: rgb(181, 181, 181);   
 }
 
 
-.taula .button-zakarrontzi {
-    background-color: #f4f4f4; /* Sin color de fondo por defecto */
-}
+
 
 .button-berria2 {
     cursor: pointer;
@@ -853,7 +849,7 @@ table {
     width: 100px;
     height: 100px;
     stroke: #000;
-    fill: none;
+  
     transition: fill 01s, stroke 1s;
 }
 

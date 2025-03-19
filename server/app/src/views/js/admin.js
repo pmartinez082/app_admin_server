@@ -287,6 +287,12 @@ export async function txapelketaBistaratu(i, idTxapelketa) {
 
             (txapelketa.faseak || []).forEach((fase) => {
                 const faseRow = ftaula.insertRow();
+                
+                // Añadir la clase 'highlight' si fase.egoera es igual a 1
+                if (parseInt(fase.egoera) === 1) {
+                    faseRow.classList.add('highlight');
+                }
+            
                 faseRow.insertCell().textContent = fase.izena || "-";
                 faseRow.insertCell().textContent =
                     parseInt(fase.egoera) === 0
@@ -294,28 +300,27 @@ export async function txapelketaBistaratu(i, idTxapelketa) {
                         : parseInt(fase.egoera) === 1
                             ? "Martxan"
                             : "Amaituta";
-
+            
                 if (fase.hasiera === null)
                     faseRow.insertCell().textContent = "-";
                 else
                     faseRow.insertCell().textContent = fase.hasiera.split('T')[0] + " " + fase.hasiera.split('T')[1].split('.')[0];
-
+            
                 if (fase.amaiera === null)
                     faseRow.insertCell().textContent = "-";
                 else
                     faseRow.insertCell().textContent = fase.amaiera.split('T')[0] + " " + fase.amaiera.split('T')[1].split('.')[0];
-
+            
                 faseRow.insertCell().textContent =
                     (fase.ezaugarriak || [])
                         .map((eza) => eza.izena)
                         .join(", ") || "-";
-
+            
                 faseRow.insertCell().textContent =
                     (fase.epaimahaikideak || [])
                         .map((ep) => ep.username)
                         .join(", ") || "-";
             });
-
             fasCell.appendChild(ftaula);
             console.log("id: " + txapelketa.idTxapelketa);
             console.log("egoera: " + txapelketa.egoera);
@@ -384,11 +389,14 @@ export async function faseakBistaratu() {
     row1.insertCell().textContent = "Parte hartzen duten epaileak";
     row1.insertCell().innerHTML = "Fasearen ebaluazioak";
     faseak.forEach((fase) => {
-  
+        const row = faseakTaula.insertRow();
+        if (parseInt(fase.egoera) === 1) {
+            row.classList.add('highlight');
+        }
         const eza = fase.ezaugarriak || [];
         //console.log(eza);
         const ep = fase.epaimahaikideak || [];
-        const row = faseakTaula.insertRow();
+        
         row.insertCell().textContent = fase.izena || "";
         if(fase.hasiera === null){
             row.insertCell().textContent = "-";
@@ -455,7 +463,10 @@ async function epaimahaikideaBistaratu(epaimahaikidea){
     taula.innerHTML = "";
     const row1 = taula.insertRow();
     row1.insertCell().textContent = epaimahaikidea.username;
+    if(await eb.getEpailearenEbaluazioakFaseka(epaimahaikidea.idEpaimahaikidea))
     row1.insertCell().innerHTML = "<button id = 'buttonEbaluazioak-"+epaimahaikidea.idEpaimahaikidea+"'>Egindako ebaluazioak</button>";
+    else
+    row1.insertCell().innerHTML = "-";
     if(await ta.getBaloratuGabekoTaldeak(epaimahaikidea.idEpaimahaikidea))
     row1.insertCell().innerHTML = "<button id = 'buttonTaldeak-"+epaimahaikidea.idEpaimahaikidea+"'>Baloratzeke</button>";
     else
@@ -476,7 +487,7 @@ async function epaimahaikideaBistaratu(epaimahaikidea){
     async function taldeakBistaratu(event, epaimahaikidea) {
         event.preventDefault();
         const taldeak = await ta.getBaloratuGabekoTaldeak(epaimahaikidea.idEpaimahaikidea);
-    
+        console.log(taldeak);
         taldeak.sort((a, b) => {
             if (a.egoera < b.egoera) return -1;
             if (a.egoera > b.egoera) return 1;
@@ -551,10 +562,10 @@ async function ebaluazioakBistaratu(event, epaimahaikidea) {
         for (const ebaluazioa of ebaluazioak) {
             const row = ebaluazioakTaula.insertRow();
             faseakTaula.setAttribute('data', ebaluazioa.idTaldea + "-" + ebaluazioa.idEzaugarria);
-            const ezaugarria = await ez.getEzaugarria2();
-            const taldea = await ta.getTaldea();
-            //console.log(ezaugarria);
-            //console.log(taldea);
+            const ezaugarria = await ez.getEzaugarria(ebaluazioa.idEzaugarria);
+            const taldea = await ta.getTaldea(ebaluazioa.idTaldea);
+            console.log(ezaugarria);
+            console.log(taldea);
             row.insertCell().textContent = ebaluazioa.puntuak;
            
             row.insertCell().textContent =  ebaluazioa.noiz.split('T')[0]+" "+ebaluazioa.noiz.split('T')[1].split('.')[0];
@@ -689,7 +700,9 @@ export async function kalkuluakBistaratu(){
     if(!u.autentifikatu()) return;
     const taulaDiv = document.createElement('div');
     taulaDiv.classList.add('taulaDiv');
-
+    const h1 = document.createElement('h1');
+    h1.textContent = "Txapelketaren podiuma";
+    taulaDiv.appendChild(h1);
     const taula = document.createElement('table');
     taula.classList.add('taula');
     const taldeak = await ta.getTaldeak();
@@ -800,17 +813,19 @@ export async function kalkuluakBistaratu(){
     const headerRow = taldeakTaula.insertRow();
     headerRow.insertCell().textContent = "Taldea";
     headerRow.insertCell().textContent = "Datuak";
+    if(i == 1|| i == 2){
     headerRow.insertCell().textContent = "Egoera";
-    headerRow.insertCell().textContent = "Puntuak Guztira";
+    headerRow.insertCell().textContent = "Puntuak Guztira";}
     if(i === 1){headerRow.insertCell().textContent = "Ekintza";}
     for (const taldea of taldeak) {
         const row = taldeakTaula.insertRow();
         row.insertCell().textContent = taldea.izena || "-";
         row.insertCell().textContent = (taldea.email || "-") + ", " + (taldea.telefonoa || "-");
-        const cell =  row.insertCell();
+        if(i == 1|| i == 2)
+{        const cell =  row.insertCell();
         cell.textContent = parseInt(taldea.egoera) === 2 ? "Deskalifikatuta" : "Txapelketan";                                     
         cell.style.color = parseInt(taldea.egoera) === 2 ? "red" : "green";
-        row.insertCell().textContent = taldea.puntuakGuztira || "0";
+        row.insertCell().textContent = taldea.puntuakGuztira || "0";}
         if(i === 1){
             row.insertCell().innerHTML = "<button name = 'ezabatuButton'id = 'taldeak-"+taldea.idTaldea+"'> Ezabatu</button>";
             

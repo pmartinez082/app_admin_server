@@ -24,17 +24,16 @@ export function getEzaugarriakArray(idFasea){
 }
 
 
-export const getEzaugarria = async () => {
+export async function getEzaugarria (idEzaugarri) {
   
     try {
       
-        const idEzaugarri  =   document.getElementsByName("ezaugarria")[0].getAttribute('data-idEzaugarria');
         
         if (!idEzaugarri) {
             //console.log("Error: Missing idEzaugarria "+idEzaugarri);
             return null;
         }
-        const response = await fetch(`${API_URL}/ezaugarria/get/${idEzaugarri}`, {
+        const response = await fetch(`${API_URL}/ezaugarria/${idEzaugarri}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -48,35 +47,13 @@ export const getEzaugarria = async () => {
 
         const data = await response.json();
         //console.log(data);
-        return data;
+        return data[0];
     } catch (err) {
         //console.log("Network or parsing error:", err);
         return null;
     }
 };
-export const getEzaugarria2 = async () => {
-    const id = document.getElementById('faseakTaula');
-    const idEzaugarria = id.getAttribute('data').split('-')[1];
-    try {
-        const response = await fetch(`${API_URL}/ezaugarria/${idEzaugarria}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            
-        });
-        if (response.ok) {
-            const data = await response.json();
-            //console.log(data);
-           return data;
 
-        }
-      
-    
-    } catch (err) {
-        //console.log(err);
-    }
-};
         
 export async function createNewEzaugarria (idFasea) {
     var i = 0;

@@ -162,7 +162,7 @@ WHERE t.egoera = 0
   try {
 
     const [results] = await dbConnection.query(sqlQuery, idEpaimahaikidea);
-    
+    console.log(results);
     if (results.length === 0) {
       res.status(404).json({ message: 'Talde guztiak baloratuta'});
     }

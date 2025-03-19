@@ -159,6 +159,7 @@ export function loadFooter(){
         
             <button class="button-berria2" title="Berria gehitu">
         <svg
+            style="fill:none"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             class="icon"

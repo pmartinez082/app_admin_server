@@ -99,6 +99,7 @@ export const createNewEbaluazioa = async (req, res) => {
   
       else{
         res.status(200).json(results);}
+        console.log(results);
     } catch (error) {
       //console.log(error);
       res.status(500).json({ error: 'Error retrieving data' });

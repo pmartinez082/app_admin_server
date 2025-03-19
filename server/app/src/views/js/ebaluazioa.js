@@ -2,7 +2,7 @@
 import {API_URL} from './konstanteak.js'
 import * as konstanteak from "./konstanteak.js";
 
-export const getEpailearenEbaluazioakFaseka = async (idEpaimahaikidea) => {
+export async function getEpailearenEbaluazioakFaseka (idEpaimahaikidea) {
   
     try {
         const response = await fetch(`${API_URL}/ebaluazioa/get/EpailearenEbaluazioakFaseka/${idEpaimahaikidea}`, {
@@ -16,7 +16,7 @@ export const getEpailearenEbaluazioakFaseka = async (idEpaimahaikidea) => {
             const ebaluazioak = await response.json();
             //console.log(ebaluazioak);
             if (ebaluazioak.length === 0) {
-                return [];
+                return false;
             }
             
             const ebaluazioakArray = [];
