@@ -9,8 +9,8 @@ const app = express();
 
 //* Settings
 
-const host = '192.168.137.1'; 
-//const host = 'localhost';
+//const host = '192.168.137.1'; 
+const host = 'localhost';
 const port = 3000;
 
 //* Middlewares
