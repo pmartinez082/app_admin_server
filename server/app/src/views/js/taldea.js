@@ -21,15 +21,9 @@ export const getTaldeak = async () => {
     }
 };
 
-export const createNewTaldea = async (event) => {
-    event.preventDefault
-    const data = {
-        izena: document.getElementById('izena').value,
-        email: document.getElementById('email').value,
-        telefonoa: document.getElementById('telefonoa').value,
-        puntuakGuztira: 0,
-        egoera: 0
-    };
+export async function createNewTaldea (data) {
+  
+
     if(!data.izena) return false;
     if(!data.telefonoa) data.telefonoa = "";
     try {
@@ -77,7 +71,7 @@ export async function getTaldea  (id)  {
 
 };
 
-export const getBaloratuGabekoTaldeak = async (idEpaimahaikidea) => {
+export async function getBaloratuGabekoTaldeak (idEpaimahaikidea) {
   
     try {
         const response = await fetch(`${API_URL}/taldea/${idEpaimahaikidea}/baloratu-gabekoak`, {
@@ -104,9 +98,8 @@ export const getBaloratuGabekoTaldeak = async (idEpaimahaikidea) => {
 };
 
 
-export const deleteTaldea = async (event) => {
-    const idTaldea = event.target.id.split('-')[1];
-    event.preventDefault();
+export async function deleteTaldea  (idTaldea)  {
+   
 
     try {
         const response = await fetch(`${API_URL}/taldea/delete/`, {
@@ -129,9 +122,8 @@ export const deleteTaldea = async (event) => {
     }
 };
 
-export const getTaldearenEbaluazioak = async () => {
+export async function getTaldearenEbaluazioak  (id) {
     
-    const id = document.getElementById('idTaldea').value;
     try {
         const response = await fetch(`${API_URL}/taldea/${id}/ebaluazioak`, {
             method: 'GET',

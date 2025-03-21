@@ -6,18 +6,20 @@ import * as ep from "./epaimahaikidea.js";
 import * as ez from "./ezaugarria.js";
 import * as eb from "./ebaluazioa.js";
 import * as ta from "./taldea.js"
-import * as konstanteak from "./konstanteak.js";
+import * as k from "./konstanteak.js";
 
 
 //txapelketaBerria.html, txapelketaEzabatu eta txapelketaView.html
 //***********************************************
 
  export async function txapelketaSortu(event){
+    const form = document.getElementById('txapelketaForm');
     event.preventDefault();
+
     const h1 = document.getElementById("abisua");
     if(h1) document.body.removeChild(h1);
-    
-    const e = await tx.createNewTxapelketa(event);
+    const txBerria = new k.Txapelketa(null, document.getElementById('lekua').value, document.getElementById('dataOrdua').value, document.getElementById('txapelketaIzena').value, null);
+    const e = await tx.createNewTxapelketa();
     console.log(e);
    if(!e){
 
@@ -29,7 +31,7 @@ import * as konstanteak from "./konstanteak.js";
         document.body.appendChild(abisua);
         return;
     }
-    document.getElementById('txapelketaForm').reset();
+    form.reset();
     document.getElementById('txapForm').hidden = true;
     document.getElementById('sortu').hidden = true;
     faseakForm(e);
@@ -191,8 +193,18 @@ export async function faseaSortu(event, i, idTxapelketa){
     }
   
     let epaimahakideak = [];
-    const idFasea = await f.createNewFasea(idTxapelketa);
-    const eza =await ez.createNewEzaugarria(idFasea);
+        const data = {
+           
+            idTxapelketa: idTxapelketa,
+            izena: document.getElementById('faseIzena').value,
+            egoera: "0",
+            irizpidea: document.getElementById('faseIrizpidea').value
+        };
+
+    const idFasea = await f.createNewFasea(data);
+
+
+    const eza =await ez.createNewEzaugarria(idEzaugarria);
     if(!eza){
         const abisua = document.createElement('h1');
         abisua.id = "abisua";
@@ -221,6 +233,28 @@ export async function faseaSortu(event, i, idTxapelketa){
 
 }
 
+export function getEzaugarriakArray(idFasea){
+
+    const ezaugarriak = [];
+    const ezaugarriaIzena = document.getElementsByName('ezaugarriaIzena');
+    const eMin = document.getElementsByName('ezaugarriaMin');
+    const eMax = document.getElementsByName('ezaugarriaMax');
+    const ponderazioa = document.getElementsByName('ponderazioa');
+    var b = 0;
+    for (var i = 0; i < ezaugarriaIzena.length; i = i+1) {
+        if(ponderazioa[i].value !== ""){
+        b += parseFloat(ponderazioa[i].value);
+        }
+        //console.log(b);
+        if (ezaugarriaIzena[i].value !== "" && eMin[i].value !== "" && eMax[i].value !== "") {
+            ezaugarriak.push(new konstanteak.Ezaugarria(0,ezaugarriaIzena[i].value, eMax[i].value, eMin[i].value, idFasea, ponderazioa[i].value));
+        }
+    }
+    if(parseInt(b) !== 1){
+    return false;
+    }
+    return ezaugarriak;
+}
 
 
 export function checkCheckbox(epaileak){
@@ -430,7 +464,7 @@ export async function faseakBistaratu() {
             buttonEb.addEventListener('click', (event) => fasearenEbaluazioakBistaratu(event,fase.idFasea));
         }
         if(buttonEg !== null){
-            buttonEg.addEventListener('click', (event) => aldatuEgoera(event));
+            buttonEg.addEventListener('click', (event) => aldatuEgoera(event, fase.idFasea, fase.egoera));
         }
         if(eza.length >0){
         eza.forEach(ezaugarria => {
@@ -597,9 +631,14 @@ async function ebaluazioakBistaratu(event, epaimahaikidea) {
 
 //faseakView.html
 //***********************************************
-async function aldatuEgoera(event) {
+async function aldatuEgoera(event, idFasea, egoera) {
     event.preventDefault();
-    await f.egoeraAldatu(event);
+        const data = {
+            idFasea: idFasea,
+            egoera: egoera,
+            data: new Date().toISOString().split('T')[0],
+        };
+    await f.egoeraAldatu(data);
     const egoeraButton = document.getElementById(`buttonEgoera-${event.target.id.split('buttonEgoera-')[1]}`);
     if (egoeraButton) {
         if(event.target.textContent === 'Hasi'){
@@ -744,7 +783,7 @@ export async function kalkuluakBistaratu(){
     document.body.appendChild(taulaDiv);
     document.getElementsByName('ezabatuButton').forEach(e => {
         e.addEventListener('click', (event) => {
-            taldeaEzabatu(event);
+            taldeaEzabatu(event, e.id.split('-')[1]);
         });
     });
 
@@ -755,9 +794,15 @@ export async function kalkuluakBistaratu(){
 //taldeaBerria.html eta taldeaEzabatu.html
  export async function  taldeaSortu(event){
     const  taulaDiv = document.getElementById('taulaDiv');
-  
     event.preventDefault();
-    const idTaldea = await ta.createNewTaldea(event);
+        const data = {
+            izena: document.getElementById('izena').value,
+            email: document.getElementById('email').value,
+            telefonoa: document.getElementById('telefonoa').value,
+            puntuakGuztira: 0,
+            egoera: 0
+        };
+    const idTaldea = await ta.createNewTaldea(data);
     taulaDiv.innerHTML = "";
     
     if(idTaldea){
@@ -835,7 +880,7 @@ export async function kalkuluakBistaratu(){
     if(i ===  1){   
     document.getElementsByName('ezabatuButton').forEach(e => {
         e.addEventListener('click', (event) => {
-            taldeaEzabatu(event);
+            taldeaEzabatu(event, e.id.split('-')[1]);
         });
     });
  }
@@ -856,9 +901,9 @@ export async function kalkuluakBistaratu(){
    
  }
 
- async function taldeaEzabatu(event){
+ async function taldeaEzabatu(event, idTaldea){
     event.preventDefault();
-    await ta.deleteTaldea(event);
+    await ta.deleteTaldea(idTaldea);
     window.location.reload();
 }
 

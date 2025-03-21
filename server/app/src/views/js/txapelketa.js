@@ -31,16 +31,7 @@ export const getTxapelketak = async () => {
 };
 
 //TXAPELKETA SORTU
-export const createNewTxapelketa = async (event) => { 
-    const data = {
-        idTxapelketa: null,
-        lekua: document.getElementById('lekua').value,
-        dataOrdua: document.getElementById('dataOrdua').value,
-        izena: document.getElementById('txapelketaIzena').value,
-        egoera: 1
-    };
-    event.preventDefault();
-
+export async function createNewTxapelketa  (data)  { 
     try {
         if(!data.lekua||!data.dataOrdua||!data.izena) return false;
         const response = await fetch(`${API_URL}/txapelketa/add`, {
@@ -69,14 +60,9 @@ export const createNewTxapelketa = async (event) => {
 
 
 //TXAPELKETA EGUNERATU
-export const updateTxapelketa = async (event) => {  
-    event.preventDefault();
-    const data = {
-        idTxapelketa: document.getElementById('idTxapelketa').value,
-        lekua: document.getElementById('lekua').value,
-        dataOrdua: document.getElementById('dataOrdua').value,
-        izena: document.getElementById('txapelketaIzena').value,
-    };
+export async function updateTxapelketa (data)  {  
+  
+
     try {
         const response = await fetch(`${API_URL}/txapelketa/update`, {
             method: 'PUT',
@@ -271,7 +257,7 @@ function createClassesFromData(data) {
     return txapelketak;
 }
 
-export const getTxapelketaAktiboarenInfo = async (req, res) => {
+export const getTxapelketaAktiboarenInfo = async () => {
     try {
         const response = await fetch(`${API_URL}/txapelketa/lortu/aktiboaren-info-guztia`, {
             method: 'GET',

@@ -25,9 +25,8 @@ export const getEpaileak = async () => {
     }
 };
 
-export const verifyUser = async () => {
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
+export async function verifyUser  (username, password) {
+
     try {
         const response = await fetch(`${API_URL}/user/verify`, {
             method: 'POST',
@@ -49,8 +48,7 @@ export const verifyUser = async () => {
 
 };
 
-export const findUser = async () => {
-    const username = document.getElementById('username').value;
+export async function findUser (username) {
     try {
         const response = await fetch(`${API_URL}/user/find`, {
             method: 'POST',
@@ -70,14 +68,7 @@ export const findUser = async () => {
 
 };
 
-export const getRole = async (user) => {
-    let username;
-    if (!user) {
-    username = document.getElementById('username').value;
-    }
-    else{
-    username = user;
-    }
+export async function getRole (username) {
     try {
         const response = await fetch(`${API_URL}/user/role`, {
             method: 'POST',
@@ -97,19 +88,16 @@ export const getRole = async (user) => {
 
 };
 
-export const createNewUser = async () => {
-    const username = document.getElementById('username').value;
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const role = "admin";
+export async function createNewUser  (user)  {
+
     try {
-        if(!username||!email||!password||!role) return false;
+        if(!user.username||!user.email||!user.password||!user.role) return false;
         const response = await fetch(`${API_URL}/user/add`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ username, email, password, role }),
+            body: JSON.stringify({ username: user.username, email: user.email, password: user.password, role: user.role }),
         });
         if (response.ok) {
             const data = await response.json();

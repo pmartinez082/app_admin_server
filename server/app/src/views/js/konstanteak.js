@@ -1,4 +1,4 @@
-export const API_URL = 'http://192.168.137.100:3000';
+export const API_URL = 'http://192.168.137.1:3000';
 //export const API_URL = 'http://localhost:3000';
 export class Ebaluazioa {
     constructor(idEbaluazioa, idEpaimahaikidea, idTaldea, idEzaugarria, puntuak, noiz) { 
@@ -56,7 +56,7 @@ export class Epaimahaikidea {
     }
 }
 
-export class user{
+export class User{
     constructor(username, email, password, role) {
         this.username = username;
         this.email = email;

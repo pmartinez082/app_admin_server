@@ -37,7 +37,7 @@ export async function getEpailearenEbaluazioakFaseka (idEpaimahaikidea) {
     }
 };
 
-export const getFasearenEbaluazioak = async (idFasea) => {
+export async function getFasearenEbaluazioak(idFasea) {
 
     try {
         const response = await fetch(`${API_URL}/ebaluazioa/get/fasearenEbaluazioak/${idFasea}`);

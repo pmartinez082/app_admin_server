@@ -3,14 +3,8 @@ import * as konstanteak from "./konstanteak.js";
 
 
 //FASEA SORTU
-export async function createNewFasea (idTxapelketa)  {
-    const data = {
-       
-        idTxapelketa: idTxapelketa,
-        izena: document.getElementById('faseIzena').value,
-        egoera: "0",
-        irizpidea: document.getElementById('faseIrizpidea').value
-    };
+export async function createNewFasea (data)  {
+
 
     try {
         if(!data.idTxapelketa||!data.izena||!data.irizpidea) return false;
@@ -136,13 +130,9 @@ export function createClassesFromDataF(data) {
 }
 
 
-export const egoeraAldatu = async (event) => {
+export async function egoeraAldatu(data)  {
   
-    const data = {
-        idFasea: event.target.id.split('buttonEgoera-')[1],
-        egoera: event.target.textContent === 'Hasi' ? "1" : "2",
-        data: new Date().toISOString().split('T')[0],
-    };
+
     try {
         const response = await fetch(`${API_URL}/fasea/egoeraAldatu`, {
             method: 'PUT',

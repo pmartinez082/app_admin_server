@@ -1,5 +1,5 @@
 import * as u from "./user.js";
-
+import * as k from './konstanteak.js'
 let isLogin = true;
 export function toggleLogin() {
   isLogin = !isLogin;
@@ -23,16 +23,17 @@ export function toggleLogin() {
 }
 
 export async function login(event) {
+  event.preventDefault();
   const mezua = document.getElementById('warning');
   if (mezua) {
       mezua.remove();
   }
-    event.preventDefault();
+ 
     const authForm = document.getElementById('authForm');
     
     if (isLogin) {
       
-      const verify = await u.verifyUser();
+      const verify = await u.verifyUser(authForm.username.value, authForm.password.value);
       if(!verify){
         
      
@@ -50,7 +51,7 @@ export async function login(event) {
     }
     } else {
         
-        const user = await u.findUser();
+        const user = await u.findUser(authForm.username.value);
         if(user){
             
             
@@ -62,7 +63,8 @@ export async function login(event) {
             return;
         }
         else{
-        const e =await u.createNewUser();
+        const u = new k.User(authForm.username.value, authForm.email.value, authForm.password.value, 'admin');
+        const e =await u.createNewUser(u);
         if(e)
         bideratu();
         }
@@ -75,7 +77,7 @@ export async function login(event) {
 
  async function bideratu(){
   const logDiv = document.getElementById('logDiv');
-  const role = await u.getRole();
+  const role = await u.getRole(document.getElementById('username').value);
   if(role == "admin"){
       window.location.href = "../admin";
         

@@ -9,7 +9,7 @@ const app = express();
 
 //* Settings
 
-const host = '192.168.137.100'; 
+const host = '192.168.137.1'; 
 //const host = 'localhost';
 const port = 3000;
 
