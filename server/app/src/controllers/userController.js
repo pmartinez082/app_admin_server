@@ -159,3 +159,17 @@ export const getRole = async (req, res) => {
     res.status(500).json({ error: 'Error verifying user' });
   }
 };
+
+export const changePassword = async (req, res) => {
+  const username = req.body.username;
+  const password = req.body.password;
+
+  try {
+    const sqlQuery = 'UPDATE user SET password = ? WHERE username = ?';
+    await dbConnection.execute(sqlQuery, [password, username]);
+    res.status(200).json({ message: 'password changed' });
+  } catch (error) { 
+    //console.log(error);
+    res.status(500).json({ error: 'Error updating password' });
+  }
+};
