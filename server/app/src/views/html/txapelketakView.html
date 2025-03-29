@@ -8,8 +8,9 @@
     <link rel="stylesheet" href="../css/style.css">
     <script type = "module">
         import { txapelketaBistaratu } from '../../js/admin.js';
-        import { loadFooter } from '../../js/app.js';
+        import { loadFooter, loadHeader } from '../../js/app.js';
         window.addEventListener('DOMContentLoaded', () => {
+            loadHeader();
             loadFooter(),
             txapelketaBistaratu(2,0);
         });

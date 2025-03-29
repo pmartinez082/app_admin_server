@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Epaile berria gehitu</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="manifest" href="../../../pwa/manifest.json" />
+  
+</head>
+<body>
+<div class="back-container"></div>
+
+<div id = "taulaDiv" class = "form-container"></div>
+<div id = "epaimahaikideenTaula" class="inputDiv">
+   
+    <form id = "epaimahaikideForm" class = "form-container">
+        <h1>Epaimahaikide berria sortu</h1>
+         <table > 
+            <tr>
+                <td>Izena</td>
+           
+                <td><select id = "epaimahaikideaSelect" required></select></td>
+            </tr>
+            <tr>
+                <td>Zein faseetan parte hartuko du?</td>
+         
+                <td><checkbox id = "epaimahaikideaSelect" required></checkbox></td>
+            </tr>
+            
+        </table>
+        <button type = "submit" id = "sortu">Sortu</button>
+
+        <div>
+        <table id = "epaimahaikideTaula"></table>
+        </div>
+</div>
+
+
+    <div id="footer"></div>
+    
+
+  <script type = "module">
+        import {autentifikatu} from '../js/user.js';
+        import {loadFooter, loadHeader} from '../js/app.js';
+        window.addEventListener('DOMContentLoaded', () => {
+            //autentifikatu(), 
+            loadHeader();
+            loadFooter();
+        });
+    </script>
+</body>
+</html>

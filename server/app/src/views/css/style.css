@@ -11,6 +11,7 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
+    background-color: #dad8d8;
     
 }
 
@@ -73,21 +74,20 @@ td {
     z-index: 1000; 
 }
 
+
 .back-container form {
     margin: 0; 
 }
 
 .back-container button {
     background-color: transparent; 
-    padding: 0px;
-    padding-left: 15px;
-    padding-right: 15px;
+    width: auto;
     cursor: pointer;
     transition: transform 0.3s ease;
     border: none;
 }
 
-.back-container button img {
+.back-container img {
     width: 30px;
     height: 30px;
 }

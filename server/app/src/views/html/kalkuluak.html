@@ -9,19 +9,15 @@
 </head>
 <body>
     <div class="back-container">
-        <form action="../admin">
-            <button type="submit"><img src="../pics/atzera.svg" alt="Atzera"></button>
-        </form>
-        <form action="../podium">
-            <button type="submit"><img src="../pics/birkargatu.svg" alt="Birkargatu"></button>
-        </form>
+       
     </div>
     <script type = "module">
         import { autentifikatu } from '../../js/user.js';
         import { kalkuluakBistaratu } from '../../js/admin.js';
-        import { loadFooter } from '../../js/app.js';
+        import { loadFooter, loadHeader } from '../../js/app.js';
         window.addEventListener('DOMContentLoaded', () => {
-            loadFooter(),
+            loadFooter();
+            loadHeader();
             kalkuluakBistaratu();
         });
     </script>

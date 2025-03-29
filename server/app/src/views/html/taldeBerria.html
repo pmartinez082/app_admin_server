@@ -9,15 +9,6 @@
 </head>
 <body>
     <div class="back-container">
-        <form action="../../berria">
-            <button type="submit"><img src="../pics/atzera.svg" alt="Atzera"></button>
-        </form>
-
-       
-        <form action="../berria/taldea">
-            <button type="submit"><img src="../pics/birkargatu.svg" alt="Birkargatu"></button>
-        </form>
-
         </div>
 <div id = "taulaDiv" class = "form-container"></div>
 <div id = "taldeenTaula" class="inputDiv"></div>
@@ -30,9 +21,10 @@
 <script type = "module">
 
     import {taldeaForm} from "../../js/admin.js";
-    import {loadFooter} from "../../js/app.js";
+    import {loadFooter, loadHeader} from "../../js/app.js";
     window.addEventListener('DOMContentLoaded', () => {
         loadFooter(),
+        loadHeader();
         taldeaForm(2);
     });
 

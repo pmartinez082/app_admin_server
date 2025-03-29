@@ -12,12 +12,6 @@
 <body>
 
     <div class="back-container">
-        <form action="../../berria">
-            <button type="submit"><img src="../pics/atzera.svg" alt="Atzera"></button>
-        </form>
-        <form action="../berria/txapelketa">
-            <button type="submit"><img src="../pics/birkargatu.svg" alt="Birkargatu"></button>
-        </form>
     </div>
 
     
@@ -79,6 +73,11 @@
 </body>
 <script type="module">
     import {txapelketaSortu, faseaSortu} from '../../js/admin.js';
+    import {loadFooter, loadHeader} from '../../js/app.js';
+    window.addEventListener('DOMContentLoaded', () => {
+        loadFooter(),
+        loadHeader();
+    });
 
     document.getElementById('sortu').addEventListener('click', async (event) => {
         await txapelketaSortu(event);
