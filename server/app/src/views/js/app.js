@@ -199,29 +199,22 @@ export function loadFooter(){
 
 export async function loadHeader(){
   const header = document.querySelector('.back-container');
-  const atzeraButton = document.createElement('button');
   const birkargatuButton = document.createElement('button');
   const birkargatuImg = document.createElement('img');
   birkargatuButton.type = 'submit';
   birkargatuButton.addEventListener('click', () => {
       window.location.reload();
   });
-  const atzeraImg = document.createElement('img');
-  atzeraButton.type = 'submit';
-  atzeraButton.addEventListener('click', () => {
-      window.location.href = '../';
-  });
-  atzeraImg.src = '../pics/atzera.svg';
+ 
 
-
-  atzeraButton.appendChild(atzeraImg);
   birkargatuImg.src = '../pics/birkargatu.svg';
   birkargatuButton.appendChild(birkargatuImg);
-  header.appendChild(atzeraButton);
   header.appendChild(birkargatuButton);
 }
 
-document.querySelector('.back-container').addEventListener('DOMContentLoaded', loadHeader);
+const header = document.querySelector('.back-container')
+if(header)
+header.addEventListener('DOMContentLoaded', loadHeader);
 
 
 

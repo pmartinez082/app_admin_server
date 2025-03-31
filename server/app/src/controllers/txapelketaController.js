@@ -271,10 +271,29 @@ ORDER BY f.idFasea, e.idEzaugarria, em.idEpaimahaikidea;
 
 };
 
+export const booleanTxapelketa0 = async (req,res) => {
+  const sqlQuery = `SELECT izena FROM txapelketa WHERE egoera = 0;`;
+  try {
+    const [results] = await dbConnection.query(sqlQuery);
+    if(results.length > 0){
+      res.status(200).json(results);
+      return;
+    }
+    else{
+      res.status(404).json({ error: 'not found'});
+      return;
+    }
+
+
+    } catch (error) {
+    //console.log(error);
+    res.status(500).json({ error: error.message});
+  }
+};
 
 export const getTxapelketaAktiboa = async (req, res) => {
   
-  const sqlQuery = `SELECT * FROM txapelketa_aktiboak WHERE idTxapelketa = 1`;
+  const sqlQuery = `SELECT * FROM txapelketa WHERE idTxapelketa = 1;`;
 
   try {
     const [results] = await dbConnection.query(sqlQuery);

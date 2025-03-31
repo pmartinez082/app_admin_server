@@ -305,3 +305,26 @@ export async function updateTxapelketaEgoera(idTxapelketa, egoera) {
         console.log(error);
     }
 }
+
+export const booleanTxapelketa0 = async () => {
+    try {
+        const response = await fetch(`${API_URL}/txapelketa/lortu/berria`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            
+        });
+        if (response.ok) {
+            const data = await response.json();
+            return data[0].izena;
+        }
+
+        else{
+            return false;
+        }
+
+    } catch (error) {
+        //console.log(error);
+    }
+};

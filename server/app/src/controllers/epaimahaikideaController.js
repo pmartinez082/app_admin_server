@@ -171,3 +171,42 @@ export const getEpailearenEpaimahaiak = async (req, res) => {
     res.status(500).json({ error: 'Error retrieving data' });
   }
 };
+
+
+export const getTxapelketarenEpaimahaikideak = async (req, res) => {
+  
+  try {
+    const [results] = await dbConnection.query(
+     " SELECT e.idFasea, e.username, f.izena FROM epaimahaikidea e JOIN fasea f ON e.idFasea = f.idFasea JOIN txapelketa t ON f.idTxapelketa = t.idTxapelketa WHERE t.egoera = 0;",
+    );
+    if (results.length > 0) {
+      res.status(200).json(results);
+      console.log(results);
+    } else {
+      res.status(404).json({ error: 'No data found' });
+    }
+  } catch (error) {
+    //console.log(error);
+    res.status(500).json({ error:error.message });
+  }
+};
+
+export const getFasearenEpaimahaikideak = async (req, res) => {
+  try {
+    
+    const [results] = await dbConnection.query("SELECT username FROM epaimahaikidea WHERE idFasea = ?", [req.params.idFasea]);
+    res.status(200).json(results);  
+  } catch (error) {
+    //console.log(error); 
+    res.status(500).json({ error: error.message });    }
+};
+
+export const getAukeratuGabekoEpaimahaikideak = async (req, res) => {
+  try {
+    
+    const [results] = await dbConnection.query("SELECT u.username FROM user u LEFT JOIN epaimahaikidea e ON u.username = e.username AND e.idFasea = ?  WHERE u.role = 'referee' AND e.username IS NULL;", [req.params.idFasea]);
+    res.status(200).json(results);  
+  } catch (error) {
+    //console.log(error); 
+    res.status(500).json({ error: error.message });    }
+};

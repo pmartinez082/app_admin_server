@@ -6,46 +6,53 @@
     <title>Epaile berria gehitu</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="manifest" href="../../../pwa/manifest.json" />
+   
   
 </head>
 <body>
 <div class="back-container"></div>
 
-<div id = "taulaDiv" class = "form-container"></div>
-<div id = "epaimahaikideenTaula" class="inputDiv">
-   
-    <form id = "epaimahaikideForm" class = "form-container">
-        <h1>Epaimahaikide berria sortu</h1>
+<div class ="form-container">
+    <h1>Epaimahaikide berria sortu</h1>
+        <img src="../../pics/epaBerria.svg" style ="max-width:200px; "> </img>
+    <form id = "epaimahaikideForm">
+       
          <table > 
+            <tr>
+                <td>Fasea</td>
+         
+                <td><select id = "faseaMenua" required>
+                    <option value="0">Aukeratu fasea</option>
+                </select></td>
+            </tr>
             <tr>
                 <td>Izena</td>
            
-                <td><select id = "epaimahaikideaSelect" required></select></td>
+                <td><select id = "epaimahaikideaMenua" disabled required>
+                    <option value="0">Fasea aukeratu lehen</option>
+                </select></td>
             </tr>
-            <tr>
-                <td>Zein faseetan parte hartuko du?</td>
-         
-                <td><checkbox id = "epaimahaikideaSelect" required></checkbox></td>
-            </tr>
+   
             
         </table>
         <button type = "submit" id = "sortu">Sortu</button>
-
-        <div>
-        <table id = "epaimahaikideTaula"></table>
-        </div>
+    </form> 
+ 
 </div>
 
+<div id = "epaimahaikideaDiv" class = "taulaDiv"></div>
 
     <div id="footer"></div>
     
 
   <script type = "module">
         import {autentifikatu} from '../js/user.js';
+        import {loadEpaimahaikideenTaula} from '../js/epaileBerriak.js';
         import {loadFooter, loadHeader} from '../js/app.js';
         window.addEventListener('DOMContentLoaded', () => {
             //autentifikatu(), 
             loadHeader();
+           
             loadFooter();
         });
     </script>

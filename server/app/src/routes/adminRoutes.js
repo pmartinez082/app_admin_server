@@ -25,6 +25,10 @@ router.get('/berria/taldea', (req, res) => {
     res.sendFile(path.join(basePath, 'app', 'src', 'views', 'html', 'taldeBerria.html'));
 });
 
+router.get('/berria/epaimahaikidea', (req, res) => {
+    res.sendFile(path.join(basePath, 'app', 'src', 'views', 'html', 'epaileBerria.html'));
+});
+
 
 router.get('/txapelketak', (req, res) => {
     res.sendFile(path.join(basePath, 'app', 'src', 'views', 'html',  'txapelketakView.html'));

@@ -152,3 +152,26 @@ export async function egoeraAldatu(data)  {
         //console.log(err);
     }
 };
+
+export async function getFasea(idFasea) {
+    try {
+        const response = await fetch(`${API_URL}/fasea/${idFasea}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            
+        });
+        if (response.ok) {
+            const data = await response.json();
+            return data;
+        }
+
+        else{
+            return false;
+        }
+
+    } catch (error) {
+        //console.log(error);
+    }
+};
