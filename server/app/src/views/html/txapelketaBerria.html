@@ -6,9 +6,11 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>txapelketa berri bat sortu</title>
-    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="manifest" href="../../../pwa/manifest.json" />
     <script src="../../js/app.js" type="module"></script>
+    <script src="../../js/txapelketaBerria.js" type="module"></script>
+
    
 </head>
 <body>
@@ -18,8 +20,9 @@
 
 
     <div id = "txapForm"  class = "form-container" style="margin-top: 50px;">
-    <h1>Txapelketa berri bat sortu </h1>
+    
     <form id = "txapelketaForm" >
+        <h1>Txapelketa berri bat sortu </h1>
         <table id = "txapelketaTaula"   >
           
             <tr>
@@ -47,33 +50,19 @@
     
     </div>
 
-    <div id="faseenTaula" class = "taulaDiv" >
-        <form id="faseakForm">
-        <table id = "faseakTaula" class = "taula" ></table></div>
-     
-    </form>
-
-
-<div id = "txapelketakDiv" class = "taulaDiv" ></div>
-<form  id = "amaitu"  action = "../../txapelketak">
-    <button type="submit" hidden >Amaitu</button>
-</form>
-
-<div id="footer">
-    
+    <div id="faseakDiv"  hidden >
+           </div>
+           <div id = "ezaugarriakDiv" class="taulaDiv"  hidden>
+            <table id = "ezaugarriakTaula" class = "taula">
+                <tr><td>Ezaugarria Izena</td><td>Puntuazio Maximoa</td><td>Puntuazio Minimoa</td><td>Ponderazioa</td></tr>
+            </table>
+              
 </div>
+
+<div id = "txapelketakDiv" style = "margin-top:50px;" class = "taulaDiv" ></div>
+
+<div id="footer" class="footer"></div>
 </body>
-<script type="module">
-    import {txapelketaSortu, faseaSortu} from '../../js/admin.js';
 
-
-    document.getElementById('sortu').addEventListener('click', async (event) => {
-        await txapelketaSortu(event);
-    });
-    document.getElementById('amaitu').addEventListener('click', (event) => {
-        faseaSortu(event);
-        window.location.href = '../../txapelketak';
-    });
-</script>
 
 </html>

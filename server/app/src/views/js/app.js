@@ -217,7 +217,7 @@ export async function loadHeader(){
 document.addEventListener('DOMContentLoaded', () => {
   loadFooter();
   loadHeader();
-  u.autentifikatu();
+ // u.autentifikatu();
 });
 
 

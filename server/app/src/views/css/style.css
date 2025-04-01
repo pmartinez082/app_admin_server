@@ -6,11 +6,14 @@
 
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    height: 100vh;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+
+    min-height: 100vh; 
+    margin: 0;
+    
     
 }
 
@@ -101,16 +104,13 @@ td {
 }
 
 
-.taulaDiv{
-    padding-top:50px;
-    padding-bottom: 60px;
-    padding-left: 25px;
-    padding-right: 25px;
-    
-   
-    
-}
+.taulaDiv {
+  
+    width: fit-content; 
+    max-width: 90%;
+    text-align: center;
 
+}
 .inputDiv {
     position: fixed; 
     top: 280px; 
@@ -213,7 +213,7 @@ td {
     color: #333;
     margin-bottom: 20px;
   }
-  
+  /*
   form {
     display: flex;
     flex-direction: column;
@@ -229,7 +229,7 @@ td {
   }
   
   form button {
-    background-color: #0000005c; /* light gray */
+    background-color: #0000005c; 
     color: white;
     border: none;
     padding: 10px;
@@ -239,7 +239,7 @@ td {
     transition: background-color 0.3s ease;
   }
   
-  
+  */
   
   #toggle-button, #installButton {
     background-color: transparent;
@@ -312,7 +312,7 @@ button.outline:hover {
     color: white;
 }
 
-input[type="text"], input[type="password"], input[type="email"], input[type="number"], input[type="date"],input[type="datetime-local"] {
+input {
     width: 100%;
     padding: 6px;
     margin: 3px 0;
@@ -322,42 +322,19 @@ input[type="text"], input[type="password"], input[type="email"], input[type="num
     box-sizing: border-box;
 }
 
-input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus, input[type="number"]:focus {
+input {
     border-color: #102C54;
     box-shadow: 0 0 8px rgba(10, 2C, 54, 0.5);
     font-size: 10px;
     outline: none;
 }
 
-input[type="submit"], input[type="button"] {
-    background-color: #102C54;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    padding: 6px;
-    font-size: 9px;
-    cursor: pointer;
-    text-transform: uppercase;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-input[type="submit"]:hover, input[type="button"]:hover {
-    background-color: #102C54;
-    transform: scale(1.05);
-}
-
-input[type="submit"]:active, input[type="button"]:active {
-    transform: scale(0.98);
-}
 
 input[type="checkbox"] {
-    position: relative;
-    font-size: 20px;
-    width: 11px;
-    height: 11px;
-    margin-right: 5px;
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    
     appearance: none;
     border: 2px solid #102C54;
     border-radius: 4px;
@@ -371,17 +348,7 @@ input[type="checkbox"]:checked {
     border-color: #102C54;
 }
 
-input[type="checkbox"]:checked::after {
-    content: '';
-    position: absolute;
-    top: 1px;
-    left: 4px;
-    width: 4px;
-    height: 8px;
-    border: solid white;
-    border-width: 0 1px 1px 0;
-    transform: rotate(45deg);
-}
+
 
 select {
     width: 100%;
@@ -505,7 +472,34 @@ label {
     pointer-events: none;
 }
 
+/*
 
+.ezaugContainer table,.epaimahaikideaContainer table{
+    gap: 0;
+    width: 100%;
+    table-layout: fixed;
+    border: none;
+    border-collapse: collapse;
+}
+
+.ezaugContainer td, .ezaugContainer th, .epaimahaikideaContainer td, .epaimahaikideaContainer th{
+    
+    max-width: 120px;
+    padding: 12px;
+    text-align: center;
+    border:  none;
+}
+*/
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 9px;
+    font-size: 9px;
+
+    text-align: justify;
+    align-items: flex-end;
+}
 
 .ezaugContainer table,.epaimahaikideaContainer table{
     gap: 0;
@@ -523,22 +517,10 @@ label {
     border:  none;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 9px;
-    font-size: 9px;
-
-    text-align: justify;
-    align-items: flex-end;
-}
 
 
 .bigbutton-container {
     position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 50px;
@@ -807,8 +789,8 @@ table {
   }
   .button-zakarrontzi {
     box-sizing: border-box;
-    width: 100%;
-    height: 100%;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     background-color: transparent; 
     border: none;
@@ -826,6 +808,7 @@ table {
 .svgIcon {
     width: 12px;
     transition-duration: .3s;
+    background-color: transparent;
 }
 
 .svgIcon path {
@@ -865,4 +848,105 @@ table {
     stroke: #666;
     fill: #222;
     transition: none;
+}
+
+.faseakDiv {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    grid-template-rows: auto auto !important;
+    gap: 20px !important;
+    padding: 20px !important;
+    background: #f9f9f9 !important;
+    border: 1px solid #ddd !important;
+    border-radius: 8px !important;
+    max-width: 600px !important;
+    width: 90% !important;
+    margin: 40px auto !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+.k1 {
+    grid-column: 1;
+    grid-row: 1;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.k2 {
+    grid-column: 2;
+    grid-row: 1;
+    align-items: stretch;
+}
+
+.k3 {
+    grid-column: 1;
+    grid-row: 2;
+    margin:auto;
+}
+
+.k4 {
+    padding-top: 30px;
+    grid-column: 2;
+    grid-row: 2;
+    margin: auto;
+}
+
+.ultimoDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.ezaugContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    width: 100%;
+}
+
+.ezaugContainer div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.ezaugContainer div:nth-child(1),
+.ezaugContainer div:nth-child(2),
+.ezaugContainer div:nth-child(3),
+.ezaugContainer div:nth-child(4) {
+    grid-column: 1;
+}
+
+.ezaugContainer div:nth-child(5),
+.ezaugContainer div:nth-child(6),
+.ezaugContainer div:nth-child(7),
+.ezaugContainer div:nth-child(8) {
+    grid-column: 2;
+}
+
+#faseakDiv h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    text-align: left;
+
+}
+
+#faseakDiv table {
+    position: relative;
+    width: 90%;
+    margin: 0 auto;
+    
+
+}
+
+.ezaugarriakDiv {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
 }

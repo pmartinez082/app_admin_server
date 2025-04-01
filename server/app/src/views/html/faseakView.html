@@ -6,14 +6,8 @@
         <title>Faseak Monitorizatu</title>
         <link rel="manifest" href="../pwa/manifest.json" />
         <link rel = "stylesheet" href = "../css/style.css">
-        <script type="module">
-            import { faseakBistaratu } from '../../js/admin.js';
-           
-            window.addEventListener('DOMContentLoaded', () => {
-                faseakBistaratu();
-            });
-        </script>
-         <script src="../../js/app.js" type="module"></script>
+         <script src="../js/app.js" type="module"></script>
+         <script src="../js/faseakIkusi.js" type="module"></script>
    
     </head>
 
@@ -21,7 +15,7 @@
         <div class="back-container"></div>
 
         <div id="content" >
-            <div class="taulaDiv" >
+            <div class="taulaDiv" style= "margin-top: 50px;" >
                 <h1>Martxan dagoen txapelketaren kudeaketa</h1>
             <table id="faseakTaula" class = "taula" >
              </table>

@@ -1,27 +1,5 @@
 import {API_URL} from './konstanteak.js'
 import * as konstanteak from './konstanteak.js';
-export function getEzaugarriakArray(idFasea){
-
-    const ezaugarriak = [];
-    const ezaugarriaIzena = document.getElementsByName('ezaugarriaIzena');
-    const eMin = document.getElementsByName('ezaugarriaMin');
-    const eMax = document.getElementsByName('ezaugarriaMax');
-    const ponderazioa = document.getElementsByName('ponderazioa');
-    var b = 0;
-    for (var i = 0; i < ezaugarriaIzena.length; i = i+1) {
-        if(ponderazioa[i].value !== ""){
-        b += parseFloat(ponderazioa[i].value);
-        }
-        //console.log(b);
-        if (ezaugarriaIzena[i].value !== "" && eMin[i].value !== "" && eMax[i].value !== "") {
-            ezaugarriak.push(new konstanteak.Ezaugarria(0,ezaugarriaIzena[i].value, eMax[i].value, eMin[i].value, idFasea, ponderazioa[i].value));
-        }
-    }
-    if(parseInt(b) !== 1){
-    return false;
-    }
-    return ezaugarriak;
-}
 
 
 export async function getEzaugarria (idEzaugarri) {
@@ -55,29 +33,17 @@ export async function getEzaugarria (idEzaugarri) {
 };
 
         
-export async function createNewEzaugarria (idFasea) {
-    var i = 0;
-    if(!getEzaugarriakArray(idFasea) ) return false;
-    while (i < getEzaugarriakArray(idFasea).length) {
-        if (getEzaugarriakArray(idFasea)[i].idEzaugarria === null) {
-            break;
-        }
-        
-        const data = {
-            idEzaugarria: null,
-            izena: getEzaugarriakArray(idFasea)[i].izena,
-            puntuakMin: getEzaugarriakArray(idFasea)[i].puntuakMin,
-            puntuakMax: getEzaugarriakArray(idFasea)[i].puntuakMax,
-            idFasea: idFasea,
-            ponderazioa: getEzaugarriakArray(idFasea)[i].ponderazioa 
-        };
+export async function createNewEzaugarria (ezaugarriak, idFasea) {
+    ezaugarriak.forEach(async(ezaugarria)=> {
+        ezaugarria.idFasea = idFasea;
+
         try {
             const response = await fetch(`${API_URL}/ezaugarria/add`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(data),
+                body: JSON.stringify(ezaugarria),
             });
             if (response.ok) {
                 
@@ -93,7 +59,7 @@ export async function createNewEzaugarria (idFasea) {
             //alert('Errorea');
             //console.log(err);
         }
-        i = i + 1;
-    }
+       
+    });
 return true;
 };
