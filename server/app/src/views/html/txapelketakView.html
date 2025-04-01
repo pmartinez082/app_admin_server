@@ -8,22 +8,18 @@
     <link rel="stylesheet" href="../css/style.css">
     <script type = "module">
         import { txapelketaBistaratu } from '../../js/admin.js';
-        import { loadFooter, loadHeader } from '../../js/app.js';
+    
         window.addEventListener('DOMContentLoaded', () => {
-            loadHeader();
-            loadFooter(),
+           
             txapelketaBistaratu(2,0);
         });
     </script>
+     <script src="../js/app.js" type="module"></script>
+   
 </head>
 <body >
     <div class="back-container">
-        <form action="../admin">
-            <button type="submit"><img src="../pics/atzera.svg" alt="Atzera"></button>
-        </form>
-        <form action="../txapelketak">
-            <button type="submit"><img src="../pics/birkargatu.svg" alt="Birkargatu"></button>
-        </form>
+
     </div>
     
     <div id = "txapelketakDiv" class = "taulaDiv" ></div>

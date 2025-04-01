@@ -18,8 +18,9 @@ import * as k from "./konstanteak.js";
 
     const h1 = document.getElementById("abisua");
     if(h1) document.body.removeChild(h1);
-    const txBerria = new k.Txapelketa(null, document.getElementById('lekua').value, document.getElementById('dataOrdua').value, document.getElementById('txapelketaIzena').value, null);
-    const e = await tx.createNewTxapelketa();
+    const txBerria = new k.Txapelketa(null, document.getElementById('lekua').value, document.getElementById('txapelketaIzena').value, document.getElementById('dataOrdua').value,0);
+  //  const txBerria = new k.Txapelketa(null, document.getElementById('lekua').value, document.getElementById('dataOrdua').value, document.getElementById('txapelketaIzena').value, null);
+    const e = await tx.createNewTxapelketa(txBerria);
     console.log(e);
    if(!e){
 
@@ -150,25 +151,18 @@ export async function faseakForm(idTxapelketa) {
 }
 
 function epaileakCheckbox(epaileak) {
-    let htmlString = "<table style='border-collapse: collapse;'>";
+    let htmlString = "<table style='border-collapse: collapse;'><tr>";
     epaileak.forEach((epaile, index) => {
-        if (index % 2 === 0) {
-            htmlString += "<tr style='border: none;'>";
-        }
-        const checkbox = `<input type="checkbox" id="epaile-${epaile.username}" name="checkbox" value="${epaile.username}">`;
-        const label = `<label for="epaile-${epaile.username}">${epaile.username}</label>`;
+        const checkbox = `<input type='checkbox' id='epaile-${epaile.username}' name='checkbox' value='${epaile.username}'>`;
+        const label = `<label for='epaile-${epaile.username}'>${epaile.username}</label>`;
         htmlString += `<td style='border: none;'>${checkbox}${label}</td>`;
-        if (index % 2 !== 0) {
-            htmlString += "</tr>";
+        if ((index + 1) % 3 === 0) {
+            htmlString += "</tr><tr>";
         }
     });
-    if (epaileak.length % 2 !== 0) {
-        htmlString += "<td style='border: none;'></td></tr>";
-    }
-    htmlString += "</table>";
+    htmlString += "</tr></table>";
     return htmlString;
-} 
-
+}
 export async function faseaSortu(event, i, idTxapelketa){
   
     event.preventDefault();

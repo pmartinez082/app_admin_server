@@ -8,23 +8,15 @@
     <title>txapelketa berri bat sortu</title>
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="manifest" href="../../../pwa/manifest.json" />
+    <script src="../../js/app.js" type="module"></script>
+   
 </head>
 <body>
 
     <div class="back-container">
     </div>
 
-    
 
-
-    <script type = "module">
-        import {autentifikatu} from '../../js/user.js';
-        import {loadFooter} from '../../js/app.js';
-        window.addEventListener('DOMContentLoaded', () => {
-            loadFooter(),
-            autentifikatu();
-        });
-    </script>
     <div id = "txapForm"  class = "form-container" style="margin-top: 50px;">
     <h1>Txapelketa berri bat sortu </h1>
     <form id = "txapelketaForm" >
@@ -73,11 +65,7 @@
 </body>
 <script type="module">
     import {txapelketaSortu, faseaSortu} from '../../js/admin.js';
-    import {loadFooter, loadHeader} from '../../js/app.js';
-    window.addEventListener('DOMContentLoaded', () => {
-        loadFooter(),
-        loadHeader();
-    });
+
 
     document.getElementById('sortu').addEventListener('click', async (event) => {
         await txapelketaSortu(event);

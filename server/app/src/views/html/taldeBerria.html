@@ -6,6 +6,8 @@
     <title>Taldeen kudeaketa</title>
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="manifest" href="../../../pwa/manifest.json" />
+    <script src="../js/app.js" type="module"></script>
+   
 </head>
 <body>
     <div class="back-container">
@@ -21,10 +23,9 @@
 <script type = "module">
 
     import {taldeaForm} from "../../js/admin.js";
-    import {loadFooter, loadHeader} from "../../js/app.js";
+   
     window.addEventListener('DOMContentLoaded', () => {
-        loadFooter(),
-        loadHeader();
+       
         taldeaForm(2);
     });
 

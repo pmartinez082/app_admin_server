@@ -6,18 +6,19 @@
     <title>Kalkuluak</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="manifest" href="../pwa/manifest.json" />
+    <script src="../js/app.js" type="module"></script>
+   
 </head>
 <body>
     <div class="back-container">
        
     </div>
     <script type = "module">
-        import { autentifikatu } from '../../js/user.js';
+
         import { kalkuluakBistaratu } from '../../js/admin.js';
-        import { loadFooter, loadHeader } from '../../js/app.js';
         window.addEventListener('DOMContentLoaded', () => {
-            loadFooter();
-            loadHeader();
+          
+   
             kalkuluakBistaratu();
         });
     </script>

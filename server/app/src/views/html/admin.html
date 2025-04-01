@@ -6,46 +6,12 @@
     <title>Admin</title>
     <link rel="manifest" href="../pwa/manifest.json" />
     <link rel="stylesheet" href="../css/style.css">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            justify-content: center;
-            align-items: center;
-            background-color: #f4f4f4;
-        }
-        /* Change blue colors to light gray tones */
-        .button, .button-hist2, .button-berria2 {
-            background-color: #d3d3d3; /* light gray */
-        }
-        .button:hover, .button-hist2:hover, .button-berria2:hover {
-            background-color: #c0c0c0; /* slightly darker light gray */
-        }
-        .icon2, .settings-btn {
-            fill: #a9a9a9; /* dark gray */
-        }
-    </style>
+    <script src="../js/app.js" type="module"></script>
+
 </head>
 <body>
-<script type="module">
-    import {autentifikatu} from '../js/user.js';
-    window.addEventListener('DOMContentLoaded', () => {
-        autentifikatu();
-    });
-</script>
 
-<div class="back-container">
-    <form action="../">
-        <button type="submit"><img src="../pics/atzera.svg" alt="Atzera"></button>
-    </form>
-    <form action="../admin">
-        <button type="submit"><img src="../pics/birkargatu.svg" alt="Birkargatu"></button>
-    </form>
-</div>
+<div id = "header" class="back-container"></div>
 
 <div class="bigbutton-container">
     <form id="adminForm4" action="../podium">
@@ -102,7 +68,7 @@
   
     </form>
 </div>
-
+<div id = "footer" class="footer"></div>
 </body>
 
 </html>

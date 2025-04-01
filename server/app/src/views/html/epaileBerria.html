@@ -6,15 +6,17 @@
     <title>Epaile berria gehitu</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="manifest" href="../../../pwa/manifest.json" />
+    <script src="../../js/app.js" type="module"></script>
+    <script src="../../js/epaileBerriak.js" type="module"></script>
    
   
 </head>
 <body>
 <div class="back-container"></div>
 
-<div class ="form-container">
+<div class ="form-container" style="margin-top: 100px;">
     <h1>Epaimahaikide berria sortu</h1>
-        <img src="../../pics/epaBerria.svg" style ="max-width:200px; "> </img>
+        <img src="../../pics/epaBerria.svg" style ="max-width:150px; "> </img>
     <form id = "epaimahaikideForm">
        
          <table > 
@@ -40,21 +42,11 @@
  
 </div>
 
-<div id = "epaimahaikideaDiv" class = "taulaDiv"></div>
+<div id = "epaimahaikideaDiv" class = "taulaDiv" style="margin-top: 450px;"></div>
 
     <div id="footer"></div>
     
 
-  <script type = "module">
-        import {autentifikatu} from '../js/user.js';
-        import {loadEpaimahaikideenTaula} from '../js/epaileBerriak.js';
-        import {loadFooter, loadHeader} from '../js/app.js';
-        window.addEventListener('DOMContentLoaded', () => {
-            //autentifikatu(), 
-            loadHeader();
-           
-            loadFooter();
-        });
-    </script>
+
 </body>
 </html>

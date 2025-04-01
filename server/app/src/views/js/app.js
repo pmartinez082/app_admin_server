@@ -1,5 +1,6 @@
 import * as u from "./user.js";
 import * as k from './konstanteak.js'
+
 let isLogin = true;
 export function toggleLogin() {
   isLogin = !isLogin;
@@ -212,9 +213,12 @@ export async function loadHeader(){
   header.appendChild(birkargatuButton);
 }
 
-const header = document.querySelector('.back-container')
-if(header)
-header.addEventListener('DOMContentLoaded', loadHeader);
+
+document.addEventListener('DOMContentLoaded', () => {
+  loadFooter();
+  loadHeader();
+  u.autentifikatu();
+});
 
 
 

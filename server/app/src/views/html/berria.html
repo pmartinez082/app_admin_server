@@ -3,7 +3,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="../pwa/manifest.json" />
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style.css"/>
+    <script src="../js/app.js" type="module"></script>
+    
     <title>Berria sortu</title>
 </head>
 <body>
@@ -36,14 +38,5 @@
     <div id="footer"></div>
        
 
-  <script type = "module">
-        import {autentifikatu} from '../js/user.js';
-        import {loadFooter, loadHeader} from '../js/app.js';
-        window.addEventListener('DOMContentLoaded', () => {
-            //autentifikatu(), 
-            loadHeader();
-            loadFooter();
-        });
-    </script>
 </body>
 </html>

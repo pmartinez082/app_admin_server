@@ -14,7 +14,7 @@ export const getEpaileak = async () => {
             const data = await response.json();
             const epaileak = [];
             data.forEach(epaile => {
-                epaileak.push(new konstanteak.user(epaile.username, epaile.email, epaile.password, epaile.role));
+                epaileak.push(new konstanteak.User(epaile.username, epaile.email, epaile.password, epaile.role));
                 
             });
             //console.log(epaileak);
@@ -142,3 +142,4 @@ export async function autentifikatu(){
 }
 
 
+  

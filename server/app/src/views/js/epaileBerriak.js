@@ -1,8 +1,7 @@
 import * as ep from '../js/epaimahaikidea.js';
 import {booleanTxapelketa0} from '../js/txapelketa.js';
-import {autentifikatu} from '../js/user.js';
+
 document.addEventListener('DOMContentLoaded', async () => {
-    //await autentifikatu();
     const faseak = await loadEpaimahaikideenTaula();
     console.log(faseak);
     await loadFaseaMenua(faseak);
@@ -59,6 +58,7 @@ export async function loadEpaimahaikideenTaula() {
     const epaiDiv = document.getElementById('epaimahaikideaDiv');
     const epaimahaikideak = await ep.getTxapelketarenEpaimahaikideak();
     const izena = await booleanTxapelketa0();
+    console.log(izena);
     if(!izena){
         
         const mezua = document.createElement('h1');
