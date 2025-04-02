@@ -41,8 +41,7 @@ const server = https.createServer(options, app);
 
 app.listen(port, host, () => {
     console.log(`Server running at http://${host}:${port}`);
-    fs.writeFileSync('./process.txt', process.pid.toString()+'\n');
-
+    
 });
 
 
