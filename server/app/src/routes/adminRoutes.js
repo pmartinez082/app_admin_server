@@ -44,6 +44,7 @@ router.use('/css', express.static(path.join(basePath, 'app', 'src', 'views', 'cs
 router.use('/js', express.static(path.join(basePath, 'app', 'src', 'views', 'js')));
 router.use('/pics', express.static(path.join(basePath, 'app', 'src', 'views', 'pics')));
 router.use('/icons', express.static(path.join(basePath, 'app', 'src', 'views', 'icons')));
+router.use('/epaile', express.static(path.join(basePath, 'app', 'src', 'views', 'epaile', 'www')));
 router.use('/pwa', express.static(path.join(basePath, 'app',  'pwa')));
 
 export default router;

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="manifest" href="../../../../../pwa/manifest.json">
+    <title>Balorazioak</title>
+   
+</head>
+<body >
+    <div class="header"></div>
+
+    <script type="module">
+        import '../js/jakinarazpenak.js';
+        import { loadFooter, loadHeader } from "../js/app.js";
+        import { ebaluazioaForm, ebaluazioaSortu } from '../js/epaile.js';
+        import { autentifikatu } from '../js/user.js';
+
+        document.addEventListener('DOMContentLoaded', async () => {
+          
+          await autentifikatu(); 
+          loadHeader();
+          loadFooter();
+          ebaluazioaForm();
+         /* const ebaluazioaButton = document.getElementById('ebaluazioaButton');
+      
+          if (ebaluazioaButton) {
+            ebaluazioaButton.addEventListener('click', async () => {
+              await ebaluazioaForm(0);
+            });
+          }
+         */
+        });
+
+
+      </script>
+      
+
+  <!--div id = "divBozkatu" >
+  <h2>Baloratzen hasi</h2>
+  <button  type="button" id="ebaluazioaButton" style = "background-color: transparent;"><img src="../pics/epaitu.svg"></button>
+</div-->  
+<div id = "content">
+  <div  id = "ebaluazioak" class="taulaDiv">
+    <h1 id = "h1"></h1>
+    <form id = "ebaluazioaForm" >
+      <div id = "menuTaldea"></div>
+      <div id = "aux" hidden>
+       
+    <table id="ebaluazioaTaula" class = "taula" ></table>
+    <button type="submit" id="baloratu" >Baloratu</button>
+  </div>
+    </form>
+    </div>
+  </div>
+    <div class="footer"></div>
+   
+</body>
+</html>

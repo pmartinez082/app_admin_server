@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' http: https: data: blob: 'unsafe-inline' 'unsafe-eval';">
+  
+  <title>saioa hasi</title>
+  <link rel="stylesheet" href = ./css/style.css> 
+  
+    
+</head>
+
+
+
+<body>
+  <script type = "module">
+    import {login, toggleLogin, checkEgoera} from './js/app.js';
+   
+    document.addEventListener('DOMContentLoaded', checkEgoera);
+
+    document.getElementById('authForm').addEventListener('submit', login);
+    document.getElementById('toggle-button').addEventListener('click', toggleLogin);
+  </script>
+  <div id = "logDiv" class = "login-container" hidden>
+    <h1 id="formTitle">Saioa hasi</h1>
+    <form id="authForm">
+
+       <input type = text id = username placeholder = "Erabiltzaile izena" required />
+     <input type="email" id="email" placeholder = "eposta kontua"  hidden />
+      <input type="password" id="password" placeholder="pasahitza" required  />
+        <button type="submit">Bidali</button>
+
+    </form>
+   
+    <div class="toggle">
+      <button id="toggle-button"  >Ez duzu konturik? Erregistratu zaitez</button>
+    </div>
+    </div>
+
+</body>
+
+</html>
