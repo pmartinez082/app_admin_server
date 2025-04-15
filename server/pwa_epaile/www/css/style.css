@@ -8,6 +8,7 @@
 
 body {
     font-family: Arial, sans-serif;
+    background-color: rgba(187, 195, 196, 0.392);
     margin: 0;
     padding: 0;
     height: 100vh;
@@ -169,12 +170,14 @@ main {
     width: 100%;
     border-collapse: collapse;
     
+    
 }
 
 
 .inputContainer {
     width: 100%;
     border-collapse: collapse;
+    
 
    
 
@@ -710,4 +713,10 @@ body {
 
     table, td, tr{
         border-color: transparent;
+    }
+
+
+    .ilara td {
+        height: 50px;
+        padding: 10px;
     }

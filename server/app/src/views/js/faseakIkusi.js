@@ -239,12 +239,12 @@ async function ebaluazioakBistaratu(event, epaimahaikidea) {
 
 async function aldatuEgoera(event, idFasea, egoera) {
     event.preventDefault();
-        const data = {
+        const datuak = {
             idFasea: idFasea,
             egoera: egoera,
-            data: new Date().toISOString().split('T')[0],
+            data: new Date().toISOString().split('T')[0] + " " + new Date().toISOString().split('T')[1].split('.')[0],
         };
-    await f.egoeraAldatu(data);
+    await f.egoeraAldatu(datuak);
     const egoeraButton = document.getElementById(`buttonEgoera-${event.target.id.split('buttonEgoera-')[1]}`);
     if (egoeraButton) {
         if(event.target.textContent === 'Hasi'){

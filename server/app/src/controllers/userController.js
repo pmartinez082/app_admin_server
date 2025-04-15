@@ -44,7 +44,7 @@ export const createNewUser = async (req, res) => {
         const user = req.body;
       
        
-        if (!user.username || !user.email || !user.password || !user.role) {
+        if (!user.username || !user.password || !user.role) {
           return res.status(400).json({
             ErrorCode: 204,
             Message: 'Fields cannot be empty'
@@ -53,7 +53,7 @@ export const createNewUser = async (req, res) => {
       
         const userObj = [
          user.username,
-         user.email,
+         user.email || null,
          user.password,
          user.role
         ];

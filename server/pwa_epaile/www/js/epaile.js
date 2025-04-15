@@ -151,6 +151,7 @@ function balorazioenTaula(fasearenEzaugarriak) {
         const tr = table.insertRow();
         const td = tr.insertCell();
         const inpt = document.createElement('input');
+        
         inpt.type = "number";
         inpt.name = "balorazioa";
         inpt.placeholder = `${ezaugarria.puntuakMin}-${ezaugarria.puntuakMax} arteko balioa`;

@@ -1,0 +1,50 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erabiltzaile berria sortu</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src = "../../js/app.js" type = "module"></script>
+    <script src = "../../js/erabBerria.js" type="module"></script>
+    
+    <link rel="manifest" href="../../pwa/manifest.json" />
+</head>
+<body>
+    <div class="back-container"></div>
+    <div id ="footer"></div>
+   
+       <div class="form-container" style="margin-top: 100px;">
+            <h1>Erabiltzaile berria sortu</h1>
+            <img src="../../pics/erabiltzaileBerria.png" style ="max-width:70px; "> </img>
+            <form id= "userForm">
+            <table>
+                <tr>
+                    <td>Erabiltzaile izena</td>
+                    <td><input type="text" id="username" required></td>
+                </tr>
+                <tr>
+                    <td>Emaila</td>
+                    <td><input type="email" id="email" ></td>
+                </tr>
+                <tr>
+                    <td>Pasahitza</td>
+                    <td><input type="password" id="password" required></td>
+                </tr>
+                <tr>
+                    <td>Rola</td>
+                    <td>
+                        <div class="toggle">
+                            <select name="rola" id="rola" required>
+                                <option value="referee">Epailea</option>
+                                <option value="admin">Administraria</option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <button type="submit">Sortu</button>
+        </form>
+    </div>
+    <div id = "userDiv" class = "taulaDiv" style="overflow:auto; margin-top: 480px; margin-bottom: 50px;">
+</body>
+</html>

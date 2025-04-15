@@ -5,7 +5,7 @@ export async function loadProfila(){
     const profila = document.getElementById('profila');
     const username = jwt_decode(localStorage.getItem('token')).username;
     const ongiEtorria = document.createElement('h1');
-    ongiEtorria.textContent = username+"-ren kontua";
+    ongiEtorria.textContent = username+"ren kontua";
 
     profila.appendChild(ongiEtorria);
 
@@ -21,7 +21,7 @@ export async function profilaEzabatu(){
 
 export async function logout(){
     localStorage.removeItem('token');
-    window.location.href = '../index.html';
+    window.location.href = '../';
 }
 
 export async function pasahitzaAldatu(){
@@ -49,3 +49,25 @@ export async function pasahitzaAldatu(){
     document.getElementById('pasahitzaForm').appendChild(mezua);
 }
 }
+
+document.getElementById('profilaLogout').addEventListener('click', () => {
+    logout();
+});
+document.getElementById('pasahitzaForm').addEventListener('submit', (event) => {
+    event.preventDefault();
+    pasahitzaAldatu();
+});
+
+document.getElementById('profilaEzabatu').addEventListener('click', () => {
+    profilaEzabatu();
+});
+document.getElementById('profilaEditatu').addEventListener('click', () => {
+   document.getElementById('form').hidden = !document.getElementById('form').hidden;
+   document.getElementById('profila').hidden = !document.getElementById('profila').hidden;
+});
+
+window.addEventListener('DOMContentLoaded', () => {
+
+    loadProfila();
+
+});

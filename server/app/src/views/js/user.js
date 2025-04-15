@@ -25,6 +25,18 @@ export const getEpaileak = async () => {
     }
 };
 
+export const getUsers = async () => {
+    try {
+        const response = await fetch(`${API_URL}/user/`, {
+            method: 'GET',
+        });
+        const users = await response.json();
+        return users;
+    } catch (err) {
+        console.log(err);
+    }
+};
+
 export async function verifyUser  (username, password) {
 
     try {
@@ -91,18 +103,18 @@ export async function getRole (username) {
 export async function createNewUser  (user)  {
 
     try {
-        if(!user.username||!user.email||!user.password||!user.role) return false;
+        if(!user.username||!user.password||!user.role) return false;
         const response = await fetch(`${API_URL}/user/add`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ username: user.username, email: user.email, password: user.password, role: user.role }),
+            body: JSON.stringify({ username: user.username, email: user.email || null, password: user.password, role: user.role }),
         });
         if (response.ok) {
-            const data = await response.json();
+           
             //console.log(data);
-            return data;
+            return true;
         }
     } catch (err) {
         //console.log(err);
@@ -112,16 +124,6 @@ export async function createNewUser  (user)  {
 export async function autentifikatu(){
     const token = localStorage.getItem('token');
     if(!token){
-        document.body.innerHTML = '';
-        const mezua = document.createElement('h1');
-        mezua.textContent = 'Ez zaude logeatuta, saioa hasi, mesedez';
-        const button = document.createElement('button');
-        button.textContent = 'Hasi saioa';
-        button.addEventListener('click', () => {
-            window.location.href = '../../../';
-        });
-        mezua.appendChild(button);
-        document.body.appendChild(mezua);
         return false;
     }
 
@@ -142,4 +144,18 @@ export async function autentifikatu(){
 }
 
 
-  
+export async function deleteUser(username){
+    const response = await fetch(`${API_URL}/user/delete`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username }),
+    });
+    if (response.ok) {
+ 
+        return true;
+    } else {
+      return false;
+    }
+}

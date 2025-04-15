@@ -10,7 +10,7 @@ body {
     flex-direction: column; 
     align-items: center; 
     justify-content: center; 
-
+    background-color: rgba(187, 195, 196, 0.392);
     min-height: 100vh; 
     margin: 0;
     
@@ -71,10 +71,10 @@ td {
     background-color: #f9f9f9;
     border-bottom: 1px solid #ddd;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     z-index: 1000;
-    padding-right: 10px;
+    
 }
 
 .back-container form {
@@ -83,6 +83,8 @@ td {
 
 .back-container button {
     background-color: transparent;
+    top: 0;
+    left: 0;
     padding: 0;
     cursor: pointer;
     transition: transform 0.3s ease;
@@ -105,11 +107,11 @@ td {
 
 
 .taulaDiv {
-  
-    width: fit-content; 
-    max-width: 90%;
-    text-align: center;
-
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+    overflow-x: auto; 
+    border: none; 
+    margin: 42px 6px 6px 6px;
 }
 .inputDiv {
     position: fixed; 
@@ -128,6 +130,7 @@ td {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 4px;
+    overflow: auto;
 
 
 }
@@ -135,7 +138,6 @@ td {
 
 .taula > tbody > tr:first-of-type {
     position: sticky;
-    top: 32px; 
     background-color: #0000005c; /* light gray */
     border-collapse: collapse;
     border: 1px solid #ddd;
@@ -145,11 +147,12 @@ td {
     color: #f9f9f9;
     text-transform: uppercase;
     z-index: 10;
+  
 }
 
 .taulaInput > tbody > tr:first-of-type {
     position: sticky;
-    top: -1px; 
+   
     background-color: #0000005c; /* light gray */
     border-collapse: collapse;
     border: 1px solid #ddd;
@@ -251,7 +254,20 @@ td {
     transition: color 0.3s ease;
   }
   
- 
+ .profila button{
+    background-color: #81888a;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 6px 12px;
+    font-size: 9px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    width: 100%;
+
+    box-sizing: border-box;
+ }
 
   
 button {
@@ -817,7 +833,7 @@ table {
 
 
 .highlight {
-    background-color: rgb(181, 181, 181);   
+    background-color: rgb(21, 233, 43);   
 }
 
 
@@ -949,4 +965,8 @@ table {
     flex-direction: column;
     gap: 10px;
 
+}
+
+#hizkuntza {
+    max-width: 200px;
 }

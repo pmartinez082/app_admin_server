@@ -25,11 +25,16 @@ router.get('/berria/taldea', (req, res) => {
     res.sendFile(path.join(basePath, 'app', 'src', 'views', 'html', 'taldeBerria.html'));
 });
 
+router.get('/berria/erabiltzailea', (req, res) => {
+    res.sendFile(path.join(basePath, 'app', 'src', 'views', 'html', 'erabiltzaileBerria.html'));
+});
 router.get('/berria/epaimahaikidea', (req, res) => {
     res.sendFile(path.join(basePath, 'app', 'src', 'views', 'html', 'epaileBerria.html'));
 });
 
-
+router.get('/profila', (req, res) => {
+    res.sendFile(path.join(basePath, 'app', 'src', 'views', 'html', 'profila.html'));
+});
 router.get('/txapelketak', (req, res) => {
     res.sendFile(path.join(basePath, 'app', 'src', 'views', 'html',  'txapelketakView.html'));
 });
@@ -44,7 +49,8 @@ router.use('/css', express.static(path.join(basePath, 'app', 'src', 'views', 'cs
 router.use('/js', express.static(path.join(basePath, 'app', 'src', 'views', 'js')));
 router.use('/pics', express.static(path.join(basePath, 'app', 'src', 'views', 'pics')));
 router.use('/icons', express.static(path.join(basePath, 'app', 'src', 'views', 'icons')));
-router.use('/epaile', express.static(path.join(basePath, 'app', 'src', 'views', 'epaile', 'www')));
+router.use('/epaile', express.static(path.join(basePath, 'pwa_epaile', 'www')));
+
 router.use('/pwa', express.static(path.join(basePath, 'app',  'pwa')));
 
 export default router;

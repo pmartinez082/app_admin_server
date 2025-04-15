@@ -1,10 +1,38 @@
-const VERSION = "4";
-const CACHE_NAME = `admin-bertsio-${VERSION}`;
+const VERSION = "1";
+const CACHE_NAME = `epaile-bertsio-${VERSION}`;
 const APP_STATIC_RESOURCES = [
- 
+  "/",
+  "/www/css/style.css",
+  "/www/icons/putxera.jpg",
+  "/www/icons/putxera.png",
+  "/www/index.html",
+  "/pwa/manifest.json",
+  "/www/html/profila.html",
+  "/www/html/epaitu.html",
+  "www/js/user.js",
+  "/www/js/txapelketa.js",
+  "/www/js/konstanteak.js",
+  "/www/js/ebaluazioa.js",
+  "/www/js/epaimahaikidea.js",
+  "/www/js/app.js",
+  "/www/js/epaile.js",
+  "/www/js/fasea.js",
+  "/www/js/ezaugarria.js",
+  "/www/js/taldea.js",
+  "/www/pics/atzera.svg",
+  "/www/pics/berria.svg",
+  "/www/pics/birkargatu.svg",
+  "/www/pics/chef.svg",
+  "/www/pics/debekatuta.svg",
+  "/www/pics/epaitu.svg",
+  "/www/pics/home.svg",
+  
+
+
+
 ];
 
-/*
+
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
@@ -71,4 +99,3 @@ self.addEventListener("fetch", (event) => {
     })
   );
 });
-*/

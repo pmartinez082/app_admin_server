@@ -5,38 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="manifest" href="/pwa/manifest.json" />
   <link rel="stylesheet" href="/css/style.css">
-  <title>saioa hasi</title>
+  <title data-i18n="Saioa_hasi"></title>
+  <script src= "./js/app.js" type = "module"></script>
+  <script src= "./js/itzulpenak.js" type = "module"></script>
 </head>
 <body>
-  <script type="module">
-    
-    import { login, toggleLogin, checkEgoera } from '/js/app.js';
-    document.addEventListener('DOMContentLoaded', checkEgoera);
-    document.getElementById('authForm').addEventListener('submit', login);
-    document.getElementById('toggle-button').addEventListener('click', toggleLogin);
-  </script>
+  <div id="header" class="back-container"></div>
+  
 
-  <div id="logDiv" class="login-container" hidden>
-    <h1 id="formTitle">Saioa hasi</h1>
+
+  <div id="logDiv" class="login-container" >
+    <h1 id="formTitle" data-i18n="Saioa_hasi"></h1>
     <form id="authForm">
-      <input type="text" id="username" placeholder="Erabiltzaile izena" required />
-      <input type="email" id="email" placeholder="Eposta kontua" hidden />
-      <input type="password" id="password" placeholder="Pasahitza" required />
-      <button type="submit">Bidali</button>
+      <input type="text" id="username" placeholder="Erabiltzaile izena" required data-i18n-placeholder="Erabiltzaile_izena" />
+      <input type="email" id="email" placeholder="Eposta kontua" hidden data-i18n-placeholder="Eposta" />
+      <input type="password" id="password" placeholder="Pasahitza" required data-i18n-placeholder="Pasahitza" />
+      <button type="submit" data-i18n="Bidali"></button>
     </form>
-    <button id="toggle-button">Ez duzu konturik? Erregistratu zaitez</button>
-    <button id="installButton" hidden>Instalatu</button>
+    <button id="toggle-button" data-i18n="EzDuzuKonturik"></button>
+    <button id="installButton" hidden data-i18n="Instalatu"></button>
   </div>
 
-  
 </body>
+
 <script>
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("/sw.js");
   }
-</script>
 
-<script>
   let deferredPrompt;
   if (!('beforeinstallprompt' in window)) {
     console.log('El navegador no soporta la instalación de PWAs.');
@@ -46,7 +42,6 @@
     e.preventDefault();
     document.getElementById('installButton').hidden = false;
     deferredPrompt = e;
-    
   });
 
   const installButton = document.getElementById('installButton');
@@ -55,13 +50,38 @@
       deferredPrompt.prompt();
       const choiceResult = await deferredPrompt.userChoice;
       if (choiceResult.outcome === 'accepted') {
-        //console.log('El usuario aceptó la instalación');
+        // Instalado
       } else {
-        //console.log('El usuario rechazó la instalación');
+        // Rechazado
       }
       deferredPrompt = null;
       installButton.style.display = 'none';
     }
   });
+
+ 
+</script>
+<script type = "module">
+  import {applyTranslation} from './js/itzulpenak.js';
+  document.addEventListener('DOMContentLoaded', () => {
+    
+      const lang = localStorage.getItem('hizkuntza') || 'eu';
+      applyTranslation(lang, "index");
+      console.log("itzultzen...", lang);
+
+  });
+  if(document.getElementById("hizkuntza")){
+  
+  document.getElementById("hizkuntza").addEventListener("change", function() {
+    const lang = document.getElementById("hizkuntza").value;
+    if(lang !== localStorage.getItem('hizkuntza')){
+    applyTranslation(lang , i);
+    console.log("itzultzen...", lang);
+    }
+  
+    
+  
+  });
+  }
 </script>
 </html>

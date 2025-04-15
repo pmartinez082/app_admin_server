@@ -123,10 +123,11 @@ export async function faseakForm(idTxapelketa) {
         event.preventDefault();
         const targetId = event.submitter.id;
         if(targetId === "gordeHurrengoa") faseaSortu(event, 1, idTxapelketa);
-        else faseaSortu(event, 0, idTxapelketa);
+        else 
+        faseaSortu(event, 0, idTxapelketa);
     });
 
-    // Mostrar el txapelketa
+  
     txapelketaBistaratu(0, idTxapelketa);
 }
 
@@ -226,47 +227,6 @@ function ezaugarrienTaula1() {
     ezaugarriakDiv.appendChild(div3);
     ezaugarriakDiv.appendChild(div4);
 
-
-    /*
-
-    const ezaugButton = document.createElement('button');
-    const ezaugButton2 = document.createElement('button');
-    ezaugButton2.id = "ezaugButton2";
-    ezaugButton.id = "ezaugButton";
-    ezaugButton2.textContent = "Kendu Ezaugarria";
-    ezaugButton.textContent = "Gehitu Ezaugarria";
-    ezaugButton.type = "button";
-    const ezaugrow22 = ezaugarriakTable.insertRow();
-    ezaugrow22.insertCell().innerHTML = "<input type='text' name='ezaugarriaIzena' required  placeholder='Ezaugarriaren izena'></input>";
-    ezaugrow22.insertCell().innerHTML = "<input type='number' name='ezaugarriaMin' required  placeholder='puntuazio minimoa'></input>";
-    ezaugrow22.insertCell().innerHTML = "<input type='number' name='ezaugarriaMax' required placeholder='puntuazio maximoa'></input>";
-    ezaugrow22.insertCell().innerHTML = "<input type='number' step = 0.01 name='ponderazioa' required placeholder='0-1 arteko balioa'></input>";
-    ezaugrow22.insertCell().appendChild(ezaugButton);
-    ezaugButton2.onclick = () => {
-        if(ezaugarriakTable.rows.length > 2){
-        ezaugarriakTable.deleteRow(ezaugarriakTable.rows.length -1);
-        ezaugarriakTable.rows[ezaugarriakTable.rows.length -1].cells[4].appendChild(ezaugButton);
-        ezaugarriakTable.rows[ezaugarriakTable.rows.length -1].cells[4].appendChild(ezaugButton2);
-        }
-    };
- 
-    ezaugButton.onclick = () => {
-
-        
-    const ezaugrow2 = ezaugarriakTable.insertRow();
-    ezaugrow2.insertCell().innerHTML = "<input type='text' name='ezaugarriaIzena' placeholder='Ezaugarriaren izena' required value = ''></input>";
-    ezaugrow2.insertCell().innerHTML = "<input type='number' name='ezaugarriaMin' placeholder='puntuazio minimoa' required value = ''></input>";
-    ezaugrow2.insertCell().innerHTML = "<input type='number' name='ezaugarriaMax' placeholder='puntuazio maximoa' required value = ''></input>";
-    ezaugrow2.insertCell().innerHTML = "<input type='number' step =  0.01 name='ponderazioa' placeholder='0-1 arteko balioa' required value = ''></input>";
-     const bCell = ezaugrow2.insertCell();
-     bCell.appendChild(ezaugButton);
-     bCell.appendChild(ezaugButton2);
-     
-    };
-*/
-   
-    //ezaugarriakDiv.appendChild(ezaugButton, ezaugButton2);
-  
     return ezaugarriakDiv;
 }
 
@@ -278,25 +238,25 @@ export function ezaugarrienTaula2() {
     const div3 = document.createElement('div');
     const div4 = document.createElement('div');
 
-    div1.innerHTML = "Puntuazio maximoa";
+    div1.innerHTML = "Puntuazio minimoa";
     const i1 = document.createElement('input');
     i1.id = "i1";
     i1.type = "number";
-    i1.id = "ezaugarriaMax1";
+    i1.id = "ezaugarriaMin1";
     i1.required = true;
     i1.step = 0.01;
-    i1.placeholder = "puntuazio maximoa";
+    i1.placeholder = "puntuazio minimoa";
     
     div2.appendChild(i1);
    
-    div3.innerHTML = "Puntuazio minimoa";
+    div3.innerHTML = "Puntuazio maximoa";
     const i2 = document.createElement('input');
     i2.id = "i2";
     i2.type = "number";
-    i2.id = "ezaugarriaMin1";
+    i2.id = "ezaugarriaMax1";
     i2.required = true;
     i2.step = 0.01;
-    i2.placeholder = "puntuazio minimoa";
+    i2.placeholder = "puntuazio maximoa";
     
     div4.appendChild(i2);
     ezaugarriakDiv.appendChild(div1);
@@ -307,117 +267,7 @@ export function ezaugarrienTaula2() {
 
     return ezaugarriakDiv;
 }
-   /*
-export async function faseakForm(idTxapelketa) {
-    const mezua = document.getElementById("abisua");    
-    const b1 = document.getElementById("gordeHurrengoa");
-    const b2 = document.getElementById("gordeAmaitu");
-    if(b1) b1.remove();
-    if(b2) b2.remove();
-    if(mezua) mezua.remove();
-    const epaileak = await u.getEpaileak();
-    const l_ = await tx.getTxapelketa(idTxapelketa);
 
-    if (l_ === null) {
-        const abisua = document.createElement('h1');
-        abisua.innerHTML = "Editatzen ari zaren txapelketa ezabatu da";
-        return;
-    }
-
-    const taulaContainer = document.getElementById('faseenTaula');
-    const formFaseak = document.getElementById('faseakForm');
-    const taula = document.getElementById('faseakTaula');
-    taula.innerHTML = "";
-   
-    const row1 = taula.insertRow();
-  
-  
-    row1.insertCell().textContent = "Fase izena";
-    row1.insertCell().textContent = "Irizpidea";
-    row1.insertCell().textContent = "Ezaugarria";
-    row1.insertCell().textContent = "Epaimahaikideak";
-
-    const row2 = taula.insertRow();
-    row2.insertCell().innerHTML = "<input type='text' id='faseIzena' required placeholder='Fase izena'></input>";
-    row2.insertCell().innerHTML = "<input type='text' id='faseIrizpidea' required placeholder='Fase irizpidea'></input>";
-
-   
-    
-    const ezaugarriakDiv = document.createElement('div');
-    const ezaugarriakTable = document.createElement('table');
-    ezaugarriakTable.classList.add('taula');
-    const ezaugarriakHeaderRow = ezaugarriakTable.insertRow();
-    ezaugarriakHeaderRow.insertCell().textContent = "Izena";
-    ezaugarriakHeaderRow.insertCell().textContent = "Puntuazio minimoa";
-    ezaugarriakHeaderRow.insertCell().textContent = "Puntuazio maximoa";
-    ezaugarriakHeaderRow.insertCell().textContent = "Ponderazioa";
-    const ezaugButton = document.createElement('button');
-    const ezaugButton2 = document.createElement('button');
-    ezaugButton2.id = "ezaugButton2";
-    ezaugButton.id = "ezaugButton";
-    ezaugButton2.textContent = "Kendu Ezaugarria";
-    ezaugButton.textContent = "Gehitu Ezaugarria";
-    ezaugButton.type = "button";
-    const ezaugrow22 = ezaugarriakTable.insertRow();
-    ezaugrow22.insertCell().innerHTML = "<input type='text' name='ezaugarriaIzena' required  placeholder='Ezaugarriaren izena'></input>";
-    ezaugrow22.insertCell().innerHTML = "<input type='number' name='ezaugarriaMin' required  placeholder='puntuazio minimoa'></input>";
-    ezaugrow22.insertCell().innerHTML = "<input type='number' name='ezaugarriaMax' required placeholder='puntuazio maximoa'></input>";
-    ezaugrow22.insertCell().innerHTML = "<input type='number' step = 0.01 name='ponderazioa' required placeholder='0-1 arteko balioa'></input>";
-    ezaugrow22.insertCell().appendChild(ezaugButton);
-    ezaugButton2.onclick = () => {
-        if(ezaugarriakTable.rows.length > 2){
-        ezaugarriakTable.deleteRow(ezaugarriakTable.rows.length -1);
-        ezaugarriakTable.rows[ezaugarriakTable.rows.length -1].cells[4].appendChild(ezaugButton);
-        ezaugarriakTable.rows[ezaugarriakTable.rows.length -1].cells[4].appendChild(ezaugButton2);
-        }
-    };
- 
-    ezaugButton.onclick = () => {
-
-        
-    const ezaugrow2 = ezaugarriakTable.insertRow();
-    ezaugrow2.insertCell().innerHTML = "<input type='text' name='ezaugarriaIzena' placeholder='Ezaugarriaren izena' required value = ''></input>";
-    ezaugrow2.insertCell().innerHTML = "<input type='number' name='ezaugarriaMin' placeholder='puntuazio minimoa' required value = ''></input>";
-    ezaugrow2.insertCell().innerHTML = "<input type='number' name='ezaugarriaMax' placeholder='puntuazio maximoa' required value = ''></input>";
-    ezaugrow2.insertCell().innerHTML = "<input type='number' step =  0.01 name='ponderazioa' placeholder='0-1 arteko balioa' required value = ''></input>";
-     const bCell = ezaugrow2.insertCell();
-     bCell.appendChild(ezaugButton);
-     bCell.appendChild(ezaugButton2);
-     
-    };
-
-    ezaugarriakDiv.appendChild(ezaugarriakTable);
-    ezaugarriakDiv.appendChild(ezaugButton, ezaugButton2);
-    row2.insertCell().appendChild(ezaugarriakDiv);
-    
-    row2.insertCell().innerHTML = epaileakCheckbox(epaileak);
-    taula.classList.add("taula");
-    formFaseak.appendChild(taula);
-    taulaContainer.appendChild(formFaseak);
-
-    const button = document.createElement('button');
-    button.setAttribute('type', 'click');
-    button.id = "gordeHurrengoa"
-    button.textContent = 'Gorde eta hurrengo fasea konfiguratu';
-    const button2 = document.createElement('button');
-    button2.setAttribute('type', 'click');
-    button2.textContent = 'Gorde eta amaitu';
-    button2.id = "gordeAmaitu";
-
-    formFaseak.appendChild(button);
-    formFaseak.appendChild(button2);
-    formFaseak.addEventListener('submit', async (event) =>{
-        event.preventDefault();
-        const targetId = event.submitter.id;
-        if(targetId === "gordeHurrengoa") faseaSortu(event,1, idTxapelketa);
-        else faseaSortu(event,0, idTxapelketa);
-        
-    });
-
-
-    txapelketaBistaratu(0,idTxapelketa);
-}
-*/
 function epaileakCheckbox(epaileak) {
     let htmlString = "<table style='border-collapse: collapse;'><tr>";
     epaileak.forEach((epaile, index) => {
@@ -435,7 +285,6 @@ export async function faseaSortu(event, i, idTxapelketa){
     event.preventDefault();
     const taulaContainer = document.getElementById('faseenTaula');
     const taula = document.getElementById('faseakTaula');
-    event.preventDefault();
     const epaileakCheck = document.getElementsByName('checkbox');
 
     if(!checkCheckbox(epaileakCheck)||!(document.getElementById('faseIzena').value)||!(document.getElementById('faseIrizpidea').value)){
@@ -464,7 +313,17 @@ export async function faseaSortu(event, i, idTxapelketa){
 
     const idFasea = await f.createNewFasea(data);
 
-
+        if(i==0){
+            const data = {
+           
+                izena: document.getElementById('ezaugarriaIzena1').value,
+                puntuakMin: document.getElementById('ezaugarriaMin1').value,
+                puntuakMax: document.getElementById('ezaugarriaMax1').value,
+                idFasea: null,
+                ponderazioa: document.getElementById('ponderazioa1').value 
+            };
+        ezaugarriak.push(data);
+        }
     const eza =await ez.createNewEzaugarria(ezaugarriak,idFasea);
     console.log(eza);
     if(!eza){
@@ -484,9 +343,8 @@ export async function faseaSortu(event, i, idTxapelketa){
  
     await ep.createNewEpaimahaikidea(idFasea);
     
-    if(i === 0){
+    if(i === 0)
         window.location.href = '../../txapelketak';
-    }
    
     document.getElementById('faseakForm').reset();
     document.getElementById('ezaugarriakDiv').hidden = true;

@@ -8,6 +8,7 @@ import ebaluazioaRoutes from './src/routes/ebaluazioaRoutes.js';
 import faseaRoutes from './src/routes/faseaRoutes.js';
 import ezaugarriaRoutes from './src/routes/ezaugarriaRoutes.js';
 
+
 const router = (app) => {
     app.use('/', adminRoutes)
     app.use('/txapelketa', txapelketaRoutes);
@@ -17,6 +18,7 @@ const router = (app) => {
     app.use('/ebaluazioa', ebaluazioaRoutes);
     app.use('/fasea', faseaRoutes);
     app.use('/ezaugarria', ezaugarriaRoutes);
+
 };
 
 export default router;

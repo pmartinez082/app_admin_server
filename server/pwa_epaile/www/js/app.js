@@ -13,7 +13,7 @@ export function toggleLogin() {
         email.removeAttribute('required');
     } else {
         formTitle.textContent = 'Erregistratu';
-        toggleButton.innerHTML = 'Badaukazu konturik? Saioa hasi';
+        toggleButton.innerHTML = 'Erregistratuta zaude? Saioa hasi';
         email.removeAttribute('hidden');
         email.setAttribute('required', '');
     }

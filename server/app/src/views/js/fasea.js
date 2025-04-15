@@ -142,15 +142,16 @@ export async function egoeraAldatu(data)  {
             body: JSON.stringify(data),
         });
         if (response.ok) {
-            //console.log('Fasea egoera aldatu da');
+            console.log('Fasea egoera aldatu da');
         } else {
             const error = await response.json();
-            //console.log(`Error: ${error.error}`);
+            console.log(`Error: ${error.error}`);
         }
     } catch (err) {
         //alert('Errorea');
         //console.log(err);
     }
+    window.location.reload();
 };
 
 export async function getFasea(idFasea) {

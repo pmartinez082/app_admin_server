@@ -7,7 +7,8 @@
   
   <title>saioa hasi</title>
   <link rel="stylesheet" href = ./css/style.css> 
-  
+  <link rel="manifest" href="../pwa/manifest.json" />
+  <script src="cordova.js"></script>
     
 </head>
 
@@ -35,9 +36,45 @@
    
     <div class="toggle">
       <button id="toggle-button"  >Ez duzu konturik? Erregistratu zaitez</button>
+      <button id = "installButton">Instalatu</button>
     </div>
     </div>
 
 </body>
+<script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("/sw.js");
+  }
+</script>
+
+<script>
+  let deferredPrompt;
+  if (!('beforeinstallprompt' in window)) {
+    console.log('El navegador no soporta la instalación de PWAs.');
+  }
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    document.getElementById('installButton').hidden = false;
+    deferredPrompt = e;
+    
+  });
+
+  const installButton = document.getElementById('installButton');
+  installButton.addEventListener('click', async () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      const choiceResult = await deferredPrompt.userChoice;
+      if (choiceResult.outcome === 'accepted') {
+        
+      } else {
+        
+      }
+      deferredPrompt = null;
+      installButton.style.display = 'none';
+    }
+  });
+</script>
+
 
 </html>
