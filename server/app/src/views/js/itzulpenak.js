@@ -9,7 +9,11 @@ export const translations = {
   BadaukazuKonturik: ["¿Ya tienes cuenta? Inicia sesión", "Badaukazu konturik? Saioa hasi"],
   Kaixo: ["Hola, ", "Kaixo, "],
   ezDago: ["El usuario no existe o la contraseña es incorrecta", "Erabiltzailea ez dago erregistratuta edo pasahitza ez da zuzena"],
-  Saioa_itxi: ["Cerrar sesión", "Saioa itxi"]
+  erabiltzaileaExistitzenDa: ["El usuario ya existe", "Erabiltzailea dagoeneko existitzen da"],
+  Saioa_itxi: ["Cerrar sesión", "Saioa itxi"],
+  baimena: ["No tienes permiso para acceder a esta página", "Ez duzu orri honetan sartzeko baimenik"],
+  atzera: ["Atrás", "Atzera"],
+  erregistratu: ["Registrarse", "Erregistratu"],
   },
   home : {
     podium: ["Ver podium de la competición", "Abian dagoen txapelketaren podium-a ikusi"],
@@ -47,7 +51,7 @@ export const translations = {
     txapBerria: ["Nueva competición", "Txapelketa berria gehitu"],
     taldeBerria: ["Nuevo equipo", "Talde berria gehitu"],
     epaimahaikideBerria: ["Nuevo juez", "Epaimahaikide berria gehitu"],
-    erabiltzaieBerria: ["Nuevo usuario", "Erabiltzaile berria gehitu"],
+    erabiltzaileBerria: ["Nuevo usuario", "Erabiltzaile berria gehitu"],
   },
   kudeaketa : {
     martxan: ["Control de la competición en martxa", "Martxan dagoen txapelketaren kudeaketa"],
@@ -85,7 +89,13 @@ export const translations = {
 
 }
 
- 
+
+document.addEventListener('DOMContentLoaded', () => {
+  const lang = localStorage.getItem("hizkuntza") || "eu";
+  applyTranslation(lang, document.getElementById('name').value);
+});
+
+
 
 export function applyTranslation(lang, i ) {
   const langIndex = lang === 'es' ? 0 : 1;
@@ -104,3 +114,25 @@ export function applyTranslation(lang, i ) {
     if (translation) el.placeholder = translation;
   });
 }
+
+
+/*
+const observer = new MutationObserver((mutationsList, observer) => {
+  console.log("¡El DOM ha cambiado!");
+ 
+  applyTranslation(localStorage.getItem('lang')||"eu", document.getElementById('name').value);
+});
+
+// Configuración del observador:
+const config = {
+  childList: true,       // nodos hijos añadidos o eliminados
+  attributes: true,      // cambios en atributos
+  subtree: true,         // observar también los hijos de los hijos
+  characterData: true    // cambios en el texto
+};
+
+// Iniciar el observador en el `document.body` o donde tú quieras
+observer.observe(document.getElementById("logDiv"), config);
+
+
+*/

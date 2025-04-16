@@ -5,37 +5,37 @@
     <link rel="manifest" href="../pwa/manifest.json" />
     <link rel="stylesheet" href="../css/style.css"/>
     <script src="../js/app.js" type="module"></script>
-    
-    
+    <script src = "../js/autentikazioa.js" type = "module"></script>
+    <script src = "../js/itzulpenak.js" type = "module"></script>
     <title>Berria sortu</title>
 </head>
 <body>
-    
+    <input type="text" id ="name" value = "berria" style = "display:none;">
     <div class="back-container"></div>
 
     <div class="bigbutton-container">
         <form action = "../berria/txapelketa">
             <button>
                 <img src="../pics/txapBerria.svg" alt="Txapelketa Berria">
-                Txapelketa berria gehitu
+                <span data-i18n = "txapBerria" ></span>
             </button>
         </form>
         <form action = "../berria/taldea"> 
             <button type = "submit">
                 <img src="../pics/taldeBerria.svg" alt="Talde Berria">
-                Talde berria gehitu
+                <span data-i18n="taldeBerria"></span>
             </button>
         </form> 
         <form action="../berria/epaimahaikidea">
             <button type = "submit">
                 <img src="../pics/epaBerria.svg" alt="Epaimahaikide Berria">
-                Epaimahaikide berria gehitu
+                <span data-i18n="epaimahaikideBerria"></span>
             </button>
         </form>
         <form action="../berria/erabiltzailea">
             <button type = "submit">
                 <img src="../pics/erabiltzaileBerria.png" alt="Erabiltzaile Berria">
-                Erabiltzaile berria gehitu
+                <span data-i18n="erabiltzaileBerria"></span>
             </button>
         </form>
           

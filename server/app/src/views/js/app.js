@@ -8,20 +8,21 @@ export function toggleLogin() {
   const email = document.getElementById('email');
   const toggleButton = document.getElementById('toggle-button');
   if (isLogin) {
-    formTitle.textContent = 'saioa hasi';
-    toggleButton.innerHTML = 'Ez duzu konturik? Erregistratu zaitez';
+    formTitle.dataset.i18n = 'saioaHasi';
+    toggleButton.dataset.i18n = 'ezDuzuKonturik';
     email.setAttribute('hidden', '');
     email.removeAttribute('required');
   } else {
-    formTitle.textContent = 'Erregistratu';
-    toggleButton.innerHTML = 'Erregistratuta zaude? Saioa hasi';
+    
+    formTitle.dataset.i18n = 'erregistratu';
+    toggleButton.dataset.i18n = 'badaukazuKonturik';
     email.removeAttribute('hidden');
     email.setAttribute('required', '');
   }
 }
 
-export async function login(event) {
-  event.preventDefault();
+export async function login() {
+ 
   const mezua = document.getElementById('warning');
   if (mezua) {
     mezua.remove();
@@ -29,7 +30,7 @@ export async function login(event) {
 
   const authForm = document.getElementById('authForm');
 
-  // Añadir atributos a los campos
+
   authForm.username.setAttribute('required', '');
   authForm.username.setAttribute('minlength', '4');
   authForm.username.setAttribute('maxlength', '20');
@@ -43,7 +44,7 @@ export async function login(event) {
     if (!verify) {
       const mezua = document.createElement('h1');
       mezua.id = "warning";
-      mezua.textContent = ` ${document.getElementById('username').value} erabiltzailea ez dago erregistratuta edo pasahitza ez da zuzena`;
+      mezua.dataset.i18n = 'ezDago';
       authForm.reset();
       logDiv.appendChild(mezua);
       return;
@@ -55,6 +56,7 @@ export async function login(event) {
     if (user) {
       const mezua = document.createElement('h1');
       mezua.id = "warning";
+      mezua.dataset.i18n = 'erabiltzaileaExistitzenDa';
       mezua.textContent = ` ${document.getElementById('username').value} izenarekin erabiltzailea existitzen da`;
       authForm.reset();
       logDiv.appendChild(mezua);
@@ -78,8 +80,10 @@ async function bideratu() {
     logDiv.innerHTML = "";
     const mezua = document.createElement('h1');
     mezua.textContent = "Ez duzu hemen egoteko baimenik";
+    mezua.dataset.i18n = 'baimena';
     const button = document.createElement('button');
     button.textContent = "Atzera";
+    button.dataset.i18n = 'atzera';
     button.addEventListener('click', function () {
       window.location.href = "../";
     });
@@ -182,17 +186,23 @@ export async function loadHeader() {
   const hizkuntza = document.createElement('select');
   hizkuntza.id = 'hizkuntza';
   hizkuntza.value = localStorage.getItem('hizkuntza') || 'eu';
+  const defaultO = document.createElement('option');
+  defaultO.value = '';
+  defaultO.textContent = 'Hizkuntza aukeratu';
   const euskara = document.createElement('option');
   euskara.value = 'eu';
   euskara.textContent = 'Euskara';
   const español = document.createElement('option');
   español.value = 'es';
   español.textContent = 'Español';
+  hizkuntza.appendChild(defaultO);
   hizkuntza.appendChild(euskara);
   hizkuntza.appendChild(español);
   hizkuntza.addEventListener('change', () => {
     const selectedLanguage = hizkuntza.value;
+    if (selectedLanguage === '') return;
     localStorage.setItem('hizkuntza', selectedLanguage);
+    window.location.reload();
   });
 
   const birkargatuButton = document.createElement('button');
@@ -213,7 +223,18 @@ document.addEventListener('DOMContentLoaded', () => {
   loadHeader();
 });
 
-if (document.getElementById('authForm'))
-  document.getElementById('authForm').addEventListener('submit', login);
-if (document.getElementById('toggle-button'))
-  document.getElementById('toggle-button').addEventListener('click', toggleLogin);
+if (document.getElementById('authForm')){
+
+  document.getElementById('authForm').addEventListener('submit', (event) => {
+    event.preventDefault();
+    login();
+  });}
+if (document.getElementById('toggle-button')){
+
+  document.getElementById('toggle-button').addEventListener('click', () => {
+    toggleLogin();
+  }
+);
+}
+
+

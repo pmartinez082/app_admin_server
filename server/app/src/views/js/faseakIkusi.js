@@ -22,14 +22,14 @@ export async function faseakBistaratu() {
     }
     console.log(faseak);
     const row1 = faseakTaula.insertRow();
-    row1.insertCell().textContent = "Fase Izena";
-    row1.insertCell().textContent = "Hasiera";
-    row1.insertCell().textContent = "Amaiera";
-    row1.insertCell().textContent = "Egoera";
-    row1.insertCell().textContent = "Irizpidea";
-    row1.insertCell().innerHTML = "<div class = 'ezaugContainer'><table ><tr><td>Ezaugarria</td><td>Ponderazioa</td></tr></table></div>";
-    row1.insertCell().textContent = "Parte hartzen duten epaileak";
-    row1.insertCell().innerHTML = "Fasearen ebaluazioak";
+    row1.insertCell().dataset.i18n = "faseIzena";
+    row1.insertCell().dataset.i18n = "hasieraData";
+    row1.insertCell().dataset.i18n = "amaieraData";
+    row1.insertCell().dataset.i18n = "egoera";
+    row1.insertCell().dataset.i18n = "irizpidea";
+    row1.insertCell().innerHTML = "<div class = 'ezaugContainer'><table ><tr><td data-i18n = 'ezaugarriak'></td><td data-i18n = 'ponderazioa'></td></tr></table></div>";
+    row1.insertCell().dataset.i18n = "jurado";
+    row1.insertCell().dataset.i18n = "ebaluazioak";
     faseak.forEach((fase) => {
         const row = faseakTaula.insertRow();
         if (parseInt(fase.egoera) === 1) {
@@ -106,11 +106,11 @@ async function epaimahaikideaBistaratu(epaimahaikidea){
     const row1 = taula.insertRow();
     row1.insertCell().textContent = epaimahaikidea.username;
     if(await eb.getEpailearenEbaluazioakFaseka(epaimahaikidea.idEpaimahaikidea))
-    row1.insertCell().innerHTML = "<button id = 'buttonEbaluazioak-"+epaimahaikidea.idEpaimahaikidea+"'>Egindako ebaluazioak</button>";
+    row1.insertCell().innerHTML = "<button id = 'buttonEbaluazioak-"+epaimahaikidea.idEpaimahaikidea+"' data-i18n = 'epailearen ebaluazioak'></button>";
     else
     row1.insertCell().innerHTML = "-";
     if(await ta.getBaloratuGabekoTaldeak(epaimahaikidea.idEpaimahaikidea))
-    row1.insertCell().innerHTML = "<button id = 'buttonTaldeak-"+epaimahaikidea.idEpaimahaikidea+"'>Baloratzeke</button>";
+    row1.insertCell().innerHTML = "<button id = 'buttonTaldeak-"+epaimahaikidea.idEpaimahaikidea+"'data-i18n = 'baloratzeke'></button>";
     else
     row1.insertCell().innerHTML = "-";
    
